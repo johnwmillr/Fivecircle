@@ -15,3 +15,12 @@
 /log/*
 !/log/.keep
 /tmp
+
+# emacs autosave
+*~
+
+# macOS
+.DS_Store
+
+# API credentials
+secrets.txt
