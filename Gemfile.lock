@@ -59,6 +59,10 @@ GEM
     formatador (0.2.5)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    google_maps_service (0.4.2)
+      hurley (~> 0.1)
+      multi_json (~> 1.11)
+      retriable (~> 2.0)
     guard (2.14.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -74,6 +78,7 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     hirb (0.7.3)
+    hurley (0.2)
     i18n (0.9.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -148,6 +153,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rdoc (4.3.0)
+    retriable (2.1.0)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -217,6 +223,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
+  google_maps_service
   guard-rspec
   hirb
   jbuilder (~> 2.0)
