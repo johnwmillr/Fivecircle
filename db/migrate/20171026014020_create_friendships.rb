@@ -1,9 +1,6 @@
 class CreateFriendships < ActiveRecord::Migration
   def change
-    create_table :friendships, id: false do |t|
-      t.primary_key :FriendshipId
-      t.integer :UserId1
-      t.integer :UserId2
+    create_table :friendships do |t|
       t.boolean :Agreed
 
       t.timestamps null: false

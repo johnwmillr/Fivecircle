@@ -1,11 +1,10 @@
 class CreateUsers < ActiveRecord::Migration
   def change
-    create_table :users, id: false do |t|
-      t.primary_key :UserId
+    create_table :users do |t|
       t.string :Username
       t.string :Email
       t.string :Password
-      t.string :CurrentLocation
+      t.string :LastLocation
 
       t.timestamps null: false
     end
