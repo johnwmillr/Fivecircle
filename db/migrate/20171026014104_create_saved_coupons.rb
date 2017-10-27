@@ -1,7 +1,7 @@
 class CreateSavedCoupons < ActiveRecord::Migration
   def change
     create_table :saved_coupons do |t|
-      t.boolean :Valid
+      t.boolean :validation
 
       t.timestamps null: false
     end
