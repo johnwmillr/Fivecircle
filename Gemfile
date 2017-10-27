@@ -54,3 +54,8 @@ group :production do
   gem 'pg' # for Heroku deployment
   gem 'rails_12factor'
 end
+
+group :password do 
+  gem 'devise'
+  gem 'authLogic'
+end
