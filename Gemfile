@@ -57,5 +57,5 @@ end
 
 group :password do 
   gem 'devise'
-  gem 'authLogic'
+  gem 'authlogic'
 end
