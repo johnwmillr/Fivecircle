@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -19,9 +18,8 @@ ActiveRecord::Schema.define(version: 20171026014928) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "merchant_id"
+    t.index ["merchant_id"], name: "index_coupons_on_merchant_id"
   end
-
-  add_index "coupons", ["merchant_id"], name: "index_coupons_on_merchant_id"
 
   create_table "friendships", force: :cascade do |t|
     t.boolean  "Agreed"
@@ -29,10 +27,9 @@ ActiveRecord::Schema.define(version: 20171026014928) do
     t.datetime "updated_at", null: false
     t.integer  "user1_id"
     t.integer  "user2_id"
+    t.index ["user1_id"], name: "index_friendships_on_user1_id"
+    t.index ["user2_id"], name: "index_friendships_on_user2_id"
   end
-
-  add_index "friendships", ["user1_id"], name: "index_friendships_on_user1_id"
-  add_index "friendships", ["user2_id"], name: "index_friendships_on_user2_id"
 
   create_table "media", force: :cascade do |t|
     t.string   "Note"
@@ -42,9 +39,8 @@ ActiveRecord::Schema.define(version: 20171026014928) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.index ["user_id"], name: "index_media_on_user_id"
   end
-
-  add_index "media", ["user_id"], name: "index_media_on_user_id"
 
   create_table "merchants", force: :cascade do |t|
     t.string   "MerchantName"
@@ -62,10 +58,9 @@ ActiveRecord::Schema.define(version: 20171026014928) do
     t.datetime "updated_at", null: false
     t.integer  "user_id"
     t.integer  "coupon_id"
+    t.index ["coupon_id"], name: "index_saved_coupons_on_coupon_id"
+    t.index ["user_id"], name: "index_saved_coupons_on_user_id"
   end
-
-  add_index "saved_coupons", ["coupon_id"], name: "index_saved_coupons_on_coupon_id"
-  add_index "saved_coupons", ["user_id"], name: "index_saved_coupons_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "Username"
