@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
   resources :users,:merchants
-  match '/signup', to: 'users#new', via: :get
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/user_signup', to: 'users#new', via: :get
+  match '/merchant_signup', to: 'merchants#new', via: :get
   match '/login',  to: 'sessions#new', via: :get
   match '/logout', to: 'sessions#destroy', via: :delete
 

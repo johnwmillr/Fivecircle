@@ -1,0 +1,22 @@
+%html
+  %head
+    %title Five Circles!
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+  %body
+    %h1.title Five Circles!
+    #main
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      - elsif flash[:warning]
+        #warning.message= flash[:warning]
+      - if @current_user
+        %p You are logged in as #{@current_user.email} (User name: #{@current_user.name})
+        = button_to 'Log Out', logout_path, :method => 'delete'
+        %p.profile= link_to 'View Profile', user_path(@current_user) 
+      - else  
+        = button_to "User Sign Up/Login" ,login_path,:method => :get, id: 'signupLogin'
+        = button_to "Merchant Sign Up/Login", login_path
+      = yield
