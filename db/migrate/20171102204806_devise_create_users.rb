@@ -5,7 +5,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :username,            null: false
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
-      t.string :lastLocation
+      t.string :lastAddress
+      t.float :latitude
+      t.float :longitude
 
       ## Recoverable
       t.string   :reset_password_token

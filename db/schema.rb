@@ -53,7 +53,9 @@ ActiveRecord::Schema.define(version: 20171103055459) do
     t.string   "username",                            null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
-    t.string   "location"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -85,7 +87,9 @@ ActiveRecord::Schema.define(version: 20171103055459) do
     t.string   "username",                            null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
-    t.string   "lastLocation"
+    t.string   "lastAddress"
+    t.float    "latitude"
+    t.float    "longitude"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
