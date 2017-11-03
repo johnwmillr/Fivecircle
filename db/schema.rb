@@ -37,7 +37,9 @@ ActiveRecord::Schema.define(version: 20171103055459) do
   create_table "media", force: :cascade do |t|
     t.string   "note"
     t.string   "photoUrl"
-    t.string   "location"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
     t.datetime "savedTime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
