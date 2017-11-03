@@ -1,4 +1,4 @@
-class UsersController < ActionController::Base
+class UsersController < ApplicationController
     def index
         # @users = User.order('created_at DESC')
     end
