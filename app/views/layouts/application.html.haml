@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title Fivecircle
+    = stylesheet_link_tag 'application', 'media' => 'all', 'data-turbolinks-track' => true
+
+    / %script(src="https://maps.googleapis.com/maps/api/js?key=#{@javascript_maps_api_key}&callback=initMap" async defer)
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+
+  %body
+    %h1.title Fivecircle
+      #main

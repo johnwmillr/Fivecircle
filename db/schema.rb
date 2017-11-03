@@ -13,9 +13,17 @@
 
 ActiveRecord::Schema.define(version: 20171026014928) do
 
+  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "ar_internal_metadata", ["key"], name: "sqlite_autoindex_ar_internal_metadata_1", unique: true
+
   create_table "coupons", force: :cascade do |t|
-    t.string   "couponName"
-    t.string   "description"
+    t.string   "CouponName"
+    t.string   "Description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "merchant_id"
@@ -24,7 +32,7 @@ ActiveRecord::Schema.define(version: 20171026014928) do
   add_index "coupons", ["merchant_id"], name: "index_coupons_on_merchant_id"
 
   create_table "friendships", force: :cascade do |t|
-    t.boolean  "agreed"
+    t.boolean  "Agreed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user1_id"
@@ -35,10 +43,10 @@ ActiveRecord::Schema.define(version: 20171026014928) do
   add_index "friendships", ["user2_id"], name: "index_friendships_on_user2_id"
 
   create_table "media", force: :cascade do |t|
-    t.string   "note"
-    t.string   "photoUrl"
-    t.string   "location"
-    t.datetime "savedTime"
+    t.string   "Note"
+    t.string   "PhotoUrl"
+    t.string   "Location"
+    t.datetime "SavedTime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
@@ -47,17 +55,17 @@ ActiveRecord::Schema.define(version: 20171026014928) do
   add_index "media", ["user_id"], name: "index_media_on_user_id"
 
   create_table "merchants", force: :cascade do |t|
-    t.string   "merchantName"
-    t.string   "username"
-    t.string   "email"
-    t.string   "password_digest"
-    t.string   "location"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "MerchantName"
+    t.string   "Username"
+    t.string   "Email"
+    t.string   "Password"
+    t.string   "Location"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "saved_coupons", force: :cascade do |t|
-    t.boolean  "validation"
+    t.boolean  "Valid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
@@ -68,12 +76,12 @@ ActiveRecord::Schema.define(version: 20171026014928) do
   add_index "saved_coupons", ["user_id"], name: "index_saved_coupons_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "email"
-    t.string   "password_digest"
-    t.string   "lastLocation"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "Username"
+    t.string   "Email"
+    t.string   "Password"
+    t.string   "LastLocation"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
 end
