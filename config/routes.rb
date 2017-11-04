@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :media
   end
-  root :to => redirect('/users')
+  # root :to => redirect('/users')
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'

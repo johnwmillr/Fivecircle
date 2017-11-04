@@ -13,17 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20171103055459) do
 
-  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
-    t.string   "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "ar_internal_metadata", ["key"], name: "sqlite_autoindex_ar_internal_metadata_1", unique: true
-
   create_table "coupons", force: :cascade do |t|
-    t.string   "CouponName"
-    t.string   "Description"
+    t.string   "couponName"
+    t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "merchant_id"
@@ -32,7 +24,7 @@ ActiveRecord::Schema.define(version: 20171103055459) do
   add_index "coupons", ["merchant_id"], name: "index_coupons_on_merchant_id"
 
   create_table "friendships", force: :cascade do |t|
-    t.boolean  "Agreed"
+    t.boolean  "agreed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user1_id"
@@ -81,7 +73,7 @@ ActiveRecord::Schema.define(version: 20171103055459) do
   add_index "merchants", ["reset_password_token"], name: "index_merchants_on_reset_password_token", unique: true
 
   create_table "saved_coupons", force: :cascade do |t|
-    t.boolean  "Valid"
+    t.boolean  "validation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
