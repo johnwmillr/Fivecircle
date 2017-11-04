@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_filter :set_media
+
+  # This is almost certainly a kludge...
+  def set_media
+    @media = Medium.all
+  end
+
   # before_filter :set_google_maps_javascript_api_key
 
   # def set_google_maps_javascript_api_key

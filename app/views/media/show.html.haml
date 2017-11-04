@@ -1,24 +1,7 @@
 -# in app/views/media/show.html.haml
 
-%h2 Media dropped on Nov. 1, 2017
--# %h2 Media dropped on #{@medium.savedTime}
+%h2 Media dropped on #{@medium.created_at} at (#{@medium.latitude}, #{@medium.longitude})
 
 %ul#details
   %li
-    Note: "I love the burritos at Panchero's!"
-  %li
-    Address: 32 S. Clinton St., Iowa City, IA
-  %li
-    Date: Nov. 1, 2017
-
--#
-  %ul#details
-    %li
-      Note:
-        = @medium.note
-    %li
-      Address:
-        = @medium.address
-    %li
-      Date:
-        = @medium.savedTime
+    = "Note: #{@medium.note}"
