@@ -1,3 +1,5 @@
+-# in app/views/users/index.html.haml
+
 %h1 User Profile
 %p
 .card
@@ -5,16 +7,22 @@
     #map
 %h1 User Media
 
-%table#movies
-  %thead
-    %th Type
-    %th Date
-    %th Location
-    %th View Post
-  %tbody
-    %td= "Note"
-    %td= "November 4th, 2017"
-    %td= "(41.660106,-91.5346026)"
-    %td= link_to "View post", media_path
-
-= link_to "Add new post", new_medium_path
+%table{:border => 1}
+  #media
+    %thead
+      %th Date
+      %th Location
+      %th View Post
+    %tbody
+      -#
+        - @media.each do |medium|
+          %tr        
+            %td= medium.savedTime
+            %td= "(#{medium.latitude}, #{medium.longitude})"
+            %td= link_to "View post", user_medium_path(medium)
+      %tr
+        %td= "Nov. 4th, 2017"
+        %td= "(41.660106,-91.5346026)"
+        %td= link_to "View post", user_medium_path(1,1)
+  
+= link_to "Add new post", new_user_medium_path(1)
