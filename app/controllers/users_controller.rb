@@ -12,6 +12,7 @@ class UsersController < ApplicationController
         # @static_map_api_key = file_lines[1]
 
         # @place = Place.find(params[:id])
+        # @user = User.find(params[:id])
     end
 
     def new
