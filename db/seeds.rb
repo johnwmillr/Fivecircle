@@ -28,5 +28,5 @@ users.each do |user|
 end
 
 media.each do |medium|
-  Media.create!(medium)
+  Medium.create!(medium)
 end
