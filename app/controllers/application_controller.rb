@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_media
 
   # This is almost certainly a kludge...
+  # I need @media to be accessible by users_controller.rb
   def set_media
     @media = Medium.all
   end

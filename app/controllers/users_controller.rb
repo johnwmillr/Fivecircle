@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
     def index
         # @users = User.order('created_at DESC')
-        @users = User.all
+        # @users = User.all
+        redirect_to root_path
     end
 
     def show
@@ -13,7 +14,8 @@ class UsersController < ApplicationController
         # @static_map_api_key = file_lines[1]
 
         # @place = Place.find(params[:id])
-        # @user = User.find(params[:id])
+        @users = User.all
+        @user  = User.find(params[:id])
     end
 
     def new
