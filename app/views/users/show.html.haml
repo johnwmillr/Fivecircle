@@ -1,28 +1,28 @@
 -# in app/views/users/show.html.haml
+-# I realize using @user.id is kind of a kludge. We should use a @current_user variable
 
-%h1 User Profile
+%h1 User #{@user.id} Profile (it should show current location)
 %p
 .card
   .card-block
     #map
-%h1 User Media
+
+%h1 User #{@user.id} Media
 
 %table{:border => 1}
   #media
     %thead
+      %th User ID
       %th Date
       %th Location
       %th View Post
     %tbody
-      -#
-        - @media.each do |medium|
-          %tr        
-            %td= medium.savedTime
-            %td= "(#{medium.latitude}, #{medium.longitude})"
-            %td= link_to "View post", user_medium_path(medium)
-      %tr
-        %td= "Nov. 4th, 2017"
-        %td= "(41.660106,-91.5346026)"
-        %td= link_to "View post", user_medium_path(1,1)
+      - @media.each do |medium|
+        - if medium.user_id == @user.id          
+          %tr     
+            %td= @user.id   
+            %td= medium.created_at
+            %td= "(#{medium.latitude}, #{medium.longitude})"          
+            %td= link_to "View post", user_medium_path(@user.id,medium.id)
   
-= link_to "Add new post", new_user_medium_path(1)
+= link_to "Add new post", new_user_medium_path(@user.id)

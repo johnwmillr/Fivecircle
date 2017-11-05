@@ -17,7 +17,7 @@ users =[{:username => 'john',     :email => 'john@fake.com',     :password => 'j
 
 media =[{:note => "I love burritos...",   :latitude => 41.6602212, longitude: -91.5346142, :user_id=> 1},
         {:note => "I love pizza...",      :latitude => 41.6602272, longitude: -91.5341293, :user_id=> 1},
-        {:note => "I love pizza...",      :latitude => 41.6602272, longitude: -91.5341293, :user_id=> 2},        
+        {:note => "I also love pizza...", :latitude => 41.6602272, longitude: -91.5341293, :user_id=> 2},        
         {:note => "I love school...",     :latitude => 41.6597985, longitude: -91.5379424, :user_id=> 3},
         {:note => "I love reading...",    :latitude => 41.6595556, longitude: -91.5388357, :user_id=> 4},
         {:note => "I love basketball...", :latitude => 41.6582506, longitude: -91.5468282, :user_id=> 5}]

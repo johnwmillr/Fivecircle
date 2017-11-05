@@ -12,8 +12,12 @@ end
 # end
 
 def show
-  id = params[:user_id]
-  @medium = Medium.find(id)
+  # if @current_user.id == params[:user_id]
+  #   @medium = Medium.find(params[:id])
+  # else
+  #   redirect_to user_path
+  # end
+  @medium = Medium.find(params[:id])  
 end
 
 end
