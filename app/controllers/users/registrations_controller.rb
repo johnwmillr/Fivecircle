@@ -8,9 +8,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+  end
+  
+  def create
+    # params["user"]["created_at"] = Time.now.strftime("%d/%m/%Y %H:%M")
+    # params["user"]["updated_at"] = Time.now.strftime("%d/%m/%Y %H:%M")
+    super
+  end
 
   # GET /resource/edit
   # def edit
