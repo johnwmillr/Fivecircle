@@ -17,7 +17,6 @@
       %th View Post
     %tbody
       - @media.each do |medium|
-      -# if medium.user_id == @current_user.id
         %tr     
           %td= @users[medium.user_id-1].id   
           %td= medium.created_at
