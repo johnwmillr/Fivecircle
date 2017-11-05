@@ -5,9 +5,19 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # root 'users#index'
-  resources :users do
-    resources :media
-  end
+  # scope :users/:user_id do
+  #   resources :media
+  # end
+  get 'users/:id' => 'users/actions#show', :as => :user
+  get 'users/:user_id/media' => 'media#index', :as => :user_media
+  post 'users/:user_id/media' => 'media#create'
+  get 'users/:user_id/media/new' => 'media#new', :as =>:new_user_medium
+  get 'users/:user_id/media/:id/edit' => 'media#edit', :as => :edit_user_medium
+  get 'users/:user_id/media/:id' => 'media#show', :as => :user_medium
+  patch 'users/:user_id/media/:id' => 'media#update'
+  put 'users/:user_id/media/:id' => 'media#update'
+  delete 'users/:user_id/media/:id' => 'media#destroy'
+  
   # root :to => redirect('/users')
 
   # You can have the root of your site routed with "root"
