@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   # scope :users/:user_id do
   #   resources :media
   # end
-  get 'users/:id' => 'users/actions#show', :as => :user
+
+  resources :users, :only => [:show]
+
+  # get 'users/:id' => 'users/actions#show', :as => :user
   get 'users/:user_id/media' => 'media#index', :as => :user_media
   post 'users/:user_id/media' => 'media#create'
   get 'users/:user_id/media/new' => 'media#new', :as =>:new_user_medium
