@@ -17,14 +17,12 @@
       %th Location
       %th View Post
     %tbody
-      - count = 0
       - @media.each do |medium|
-        - if medium.user_id == @user.id
-          - count += 1
+        - if medium.user_id == @user.id          
           %tr     
             %td= @user.id   
             %td= medium.created_at
             %td= "(#{medium.latitude}, #{medium.longitude})"          
-            %td= link_to "View post", user_medium_path(@user.id,count)
+            %td= link_to "View post", user_medium_path(@user.id,medium.id)
   
 = link_to "Add new post", new_user_medium_path(@user.id)

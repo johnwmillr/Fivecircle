@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   # This is almost certainly a kludge...
   # I need @media to be accessible by users_controller.rb
   def set_media
-    @media = Medium.all
+    # @media = Medium.all
+    @media = Medium.where(user_id: params[:id])
   end
 
   # before_filter :set_google_maps_javascript_api_key
