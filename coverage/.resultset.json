@@ -47,6 +47,57 @@
         1,
         null
       ],
+      "/Users/john/Dropbox/Iowa/ECE_5820_SoftwareLanguagesAndTools/Project/Fivecircle/app/controllers/users_controller.rb": [
+        1,
+        null,
+        1,
+        1,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/john/Dropbox/Iowa/ECE_5820_SoftwareLanguagesAndTools/Project/Fivecircle/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
       "/Users/john/Dropbox/Iowa/ECE_5820_SoftwareLanguagesAndTools/Project/Fivecircle/app/models/coupon.rb": [
         1,
         1,
@@ -55,6 +106,11 @@
       ],
       "/Users/john/Dropbox/Iowa/ECE_5820_SoftwareLanguagesAndTools/Project/Fivecircle/app/models/friendship.rb": [
         1,
+        1,
+        1,
+        null
+      ],
+      "/Users/john/Dropbox/Iowa/ECE_5820_SoftwareLanguagesAndTools/Project/Fivecircle/app/models/medium.rb": [
         1,
         1,
         null
@@ -74,64 +130,8 @@
         0,
         0
       ],
-      "/Users/john/Dropbox/Iowa/ECE_5820_SoftwareLanguagesAndTools/Project/Fivecircle/app/models/medium.rb": [
-        0,
-        0,
-        0
-      ],
-      "/Users/john/Dropbox/Iowa/ECE_5820_SoftwareLanguagesAndTools/Project/Fivecircle/app/controllers/application_controller.rb": [
-        0,
-        null,
-        null,
-        0,
-        0,
-        null,
-        null,
-        null,
-        0,
-        null,
-        0,
-        0,
-        null,
-        null,
-        0,
-        null,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        0
-      ],
       "/Users/john/Dropbox/Iowa/ECE_5820_SoftwareLanguagesAndTools/Project/Fivecircle/app/controllers/merchants_controller.rb": [
         0,
-        0
-      ],
-      "/Users/john/Dropbox/Iowa/ECE_5820_SoftwareLanguagesAndTools/Project/Fivecircle/app/controllers/users_controller.rb": [
-        0,
-        null,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        null,
         0
       ],
       "/Users/john/Dropbox/Iowa/ECE_5820_SoftwareLanguagesAndTools/Project/Fivecircle/app/controllers/welcome_controller.rb": [
@@ -388,6 +388,6 @@
         0
       ]
     },
-    "timestamp": 1509942166
+    "timestamp": 1509943991
   }
 }
