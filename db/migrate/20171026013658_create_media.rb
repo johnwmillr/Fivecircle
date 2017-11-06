@@ -3,7 +3,9 @@ class CreateMedia < ActiveRecord::Migration
     create_table :media do |t|
       t.string :note
       t.string :photoUrl
-      t.string :location
+      t.string :address
+      t.float :latitude
+      t.float :longitude
       t.timestamp :savedTime
 
       t.timestamps null: false

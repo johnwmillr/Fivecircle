@@ -18,6 +18,12 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use Haml as the templating library
 gem 'haml'
 
+# For CSS stuff
+gem 'bootstrap', '~> 4.0.0.alpha3'
+
+# For the geocoding
+gem 'geocoder'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

@@ -1,0 +1,28 @@
+%h1 Sign-up 
+
+-unless @user ==nil
+  -if @user.errors.any?
+    %ul
+    -@user.errors.full_messages.each do |msg|
+      %li #{msg}
+
+= form_tag user_registration_path, :id=>'signup_form' do
+
+  = label :user, :username, 'Five Circle ID'
+  = text_field :user, 'username'
+
+  = label :user, :email, 'Email'
+  = text_field :user, 'email'
+
+  = label :user, :password, 'Password'
+  = password_field :user, 'password'
+  -if @minimum_password_length
+    <br> 
+    (#{@minimum_password_length} characters minimum)
+
+  = label :user, :password_confirmation, 'Confirm Password'
+  = password_field :user, 'password_confirmation'
+
+  = submit_tag 'Create my account'
+  <br>
+  = render "users/shared/links"

@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %title Fivecircle
+    = stylesheet_link_tag 'application', 'media' => 'all', 'data-turbolinks-track' => true
+    %script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqnz3DH-SPMzN2934Ptf-2bpl36vdfJcw&callback=initMap" async defer)
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags    
+
+  %body
+    %h1.title Five Circles!
+    #main
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      - elsif flash[:warning]
+        #warning.message= flash[:warning]
+      - if current_user
+        %p You are logged in as #{current_user.email} (User name: #{current_user.username})
+        = button_to 'Log Out', destroy_user_session_path, :method => 'delete'
+        %p.profile= link_to 'View Profile', user_path(current_user) 
+      - else  
+        = button_to "User Sign Up/Login" ,new_user_session_path,:method => :get, id: 'signupLogin'
+        = button_to "Merchant Sign Up/Login", new_merchant_session_path,:method => :get
+      = yield

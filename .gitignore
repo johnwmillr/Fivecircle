@@ -4,6 +4,8 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+.DS_Store
+
 # Ignore bundler config.
 /.bundle
 
@@ -13,14 +15,17 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*
+/tmp/*
 !/log/.keep
-/tmp
+!/tmp/.keep
 
-# emacs autosave
+# Ignore Byebug command history file.
+.byebug_history
+
 *~
 
-# macOS
-.DS_Store
+# Geocoder
+config/initializers/geocoder.rb
 
-# API credentials
+# API Keys
 secrets.txt
