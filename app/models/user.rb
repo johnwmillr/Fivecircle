@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:username]
+         
+  devise :omniauthable, :omniauth_providers => [:facebook]
+  
   has_many :media
   has_many :saved_coupons
   has_many :friendships
