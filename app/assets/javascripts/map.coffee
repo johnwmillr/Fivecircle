@@ -26,12 +26,12 @@ jQuery ->
         lng_field.val latLng.lng()
         
     applyLocation = (location) ->
-        alert('Latitude:' + location.coords.latitude + ', Longitude: ' + location.coords.longitude + ', Accuracy: ' + location.coords.accuracy)
+        # alert('Latitude:' + location.coords.latitude + ', Longitude: ' + location.coords.longitude + ', Accuracy: ' + location.coords.accuracy)
         
     $(document).ready ->
         setInterval () ->
             navigator.geolocation.getCurrentPosition applyLocation
-            alert('woo')
+            # alert('woo')
         , 2000
         
     
