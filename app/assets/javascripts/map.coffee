@@ -24,3 +24,14 @@ jQuery ->
     updateFields = (latLng) ->
         lat_field.val latLng.lat()
         lng_field.val latLng.lng()
+        
+    applyLocation = (location) ->
+        alert('Latitude:' + location.coords.latitude + ', Longitude: ' + location.coords.longitude + ', Accuracy: ' + location.coords.accuracy)
+        
+    $(document).ready ->
+        setInterval () ->
+            navigator.geolocation.getCurrentPosition applyLocation
+            alert('woo')
+        , 2000
+        
+    
