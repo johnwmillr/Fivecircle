@@ -1,18 +1,21 @@
 %h1 Log in 
 
--unless @user ==nil
-  -if @user.errors.any?
+-unless @merchant ==nil
+  -if @merchant.errors.any?
     %ul
-    -@user.errors.full_messages.each do |msg|
+    -@merchant.errors.full_messages.each do |msg|
       %li #{msg}
 
-= form_tag user_session_path, :id=>'login_form' do
+= form_tag merchant_session_path, :id=>'login_form' do
 
-  = label :user, :username, 'Five Circle ID'
-  = text_field :user, 'username'
+  = label :merchant, :m_id, 'Five Circle Merchant ID'
+  = text_field :merchant, 'm_id'
+  
+  = label :merchant, :email, 'merchant email'
+  = text_field :merchant, 'email'
 
-  = label :user, :password, 'Password'
-  = password_field :user, 'password'
+  = label :merchant, :password, 'Password'
+  = password_field :merchant, 'password'
   
   -if devise_mapping.rememberable?
     <br>
@@ -21,7 +24,7 @@
   <br>
   = submit_tag 'Log in'
   <br>
-  = render "users/shared/links"
+  = render "merchants/shared/links"
 
 
 
