@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :users, :only => [:show]
   resources :merchants, :only => [:show]
+  resources :coupons # This makes the new user form work, but it's not what we want
 
   # get 'users/:id' => 'users/actions#show', :as => :user
   get 'users/:user_id/media' => 'media#index', :as => :user_media

@@ -28,4 +28,4 @@
             %td= @merchant.address
             %td= link_to "View coupon", merchant_coupon_path(@merchant.id,coupon.id)
   
-= link_to "Add new coupon", root_path
+= link_to "Add new coupon", new_merchant_coupon_path(@merchant.id)

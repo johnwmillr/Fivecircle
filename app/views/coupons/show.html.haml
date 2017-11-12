@@ -9,3 +9,5 @@
     = "Name: #{@coupon.couponName}"
   %li
     = "Description: #{@coupon.description}"
+
+= link_to "Return to profile", merchant_path(@coupon.merchant_id)
