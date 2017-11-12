@@ -3,7 +3,7 @@ class DeviseCreateMerchants < ActiveRecord::Migration
     create_table :merchants do |t|
       ## Database authenticatable
       t.string :merchantName,       null: false
-      t.string :username,           null: false
+      t.string :m_id,           null: false
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.string :address
@@ -39,7 +39,7 @@ class DeviseCreateMerchants < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :merchants, :merchantName,         unique: true
+    add_index :merchants, :m_id,                 unique: true
     add_index :merchants, :email,                unique: true
     add_index :merchants, :reset_password_token, unique: true
     # add_index :merchants, :confirmation_token,   unique: true

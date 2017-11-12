@@ -1,0 +1,34 @@
+%h1 Sign-up 
+
+-unless @merchant ==nil
+  -if @merchant.errors.any?
+    %ul
+    -@merchant.errors.full_messages.each do |msg|
+      %li #{msg}
+
+= form_tag merchant_registration_path, :id=>'signup_form' do
+
+  = label :merchant, :m_id, 'Five Circle Merchant ID'
+  = text_field :merchant, 'm_id'
+  
+  = label :merchant, :merchantName, 'Company Name'
+  = text_field :merchant, 'merchantName'
+
+  = label :merchant, :email, 'Email'
+  = text_field :merchant, 'email'
+  
+  = label :merchant, :address, 'Company Location'
+  = text_field :merchant, 'address'
+
+  = label :merchant, :password, 'Password'
+  = password_field :merchant, 'password'
+  -if @minimum_password_length
+    <br> 
+    (#{@minimum_password_length} characters minimum)
+
+  = label :merchant, :password_confirmation, 'Confirm Password'
+  = password_field :merchant, 'password_confirmation'
+
+  = submit_tag 'Create my merchant account'
+  <br>
+  = render "merchants/shared/links"
