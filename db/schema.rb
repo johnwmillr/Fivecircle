@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20171103055459) do
 
   create_table "merchants", force: :cascade do |t|
     t.string   "merchantName",                        null: false
-    t.string   "m_id",                                null: false
+    t.string   "username",                            null: false
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "address"
@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 20171103055459) do
   end
 
   add_index "merchants", ["email"], name: "index_merchants_on_email", unique: true
-  add_index "merchants", ["m_id"], name: "index_merchants_on_m_id", unique: true
   add_index "merchants", ["reset_password_token"], name: "index_merchants_on_reset_password_token", unique: true
+  add_index "merchants", ["username"], name: "index_merchants_on_username", unique: true
 
   create_table "saved_coupons", force: :cascade do |t|
     t.boolean  "validation"

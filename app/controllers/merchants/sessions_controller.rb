@@ -8,12 +8,17 @@ class Merchants::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    merchant = Merchant.find_by_m_id(params[:merchant][:m_id])
+    merchant = Merchant.find_by_username(params[:merchant][:username])
     if merchant && merchant.valid_password?(params[:merchant][:password]) && merchant.email == params[:merchant][:email]
-      #sign in and redirect to show page
-      super
+      if !current_user
+        #sign in and redirect to show page
+        super
+      else
+        flash[:warning] = 'logout user first to login merchant'
+        redirect_to root_path
+      end
     else
-      flash.now[:warning] = 'Invalid email/password combination'
+      flash[:warning] = 'Invalid email/password combination'
       render 'new'
     end  
     

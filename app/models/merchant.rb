@@ -3,6 +3,6 @@ class Merchant < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :authentication_keys => [:m_id, :email]
+         :authentication_keys => [:username, :email]
   has_many :coupons
 end
