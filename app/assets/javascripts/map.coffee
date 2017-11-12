@@ -6,7 +6,7 @@ jQuery ->
         if $('#map').size() > 0
             map = new google.maps.Map document.getElementById('map'), {
                 center: {lat: 41.66085, lng: -91.53054}
-                zoom: 13
+                zoom: 16
             }
         map.addListener 'click', (e) ->
             placeMarkerAndPanTo e.latLng, map
@@ -26,12 +26,13 @@ jQuery ->
         lng_field.val latLng.lng()
         
     applyLocation = (location) ->
-        alert('Latitude:' + location.coords.latitude + ', Longitude: ' + location.coords.longitude + ', Accuracy: ' + location.coords.accuracy)
-        
+        # alert('Latitude:' + location.coords.latitude + ', Longitude: ' + location.coords.longitude + ', Accuracy: ' + location.coords.accuracy)
+        #marker = new google.maps.Marker
+        #   position: {lat: location.coords.latitude, lng: location.coords.longitude}
+        #    map: map
+        placeMarkerAndPanTo {lat: location.coords.latitude, lng: location.coords.longitude}, map
     $(document).ready ->
         setInterval () ->
             navigator.geolocation.getCurrentPosition applyLocation
-            alert('woo')
+            #alert('woo')
         , 2000
-        
-    
