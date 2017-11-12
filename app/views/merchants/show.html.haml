@@ -1,0 +1,29 @@
+-# in app/views/merchants/show.html.haml
+
+%h1 Merchant Profile
+%h2 (refresh page if map does not appear)
+%p
+.card
+  .card-block
+    #map
+
+%h1 Merchant Coupons
+
+%table{:border => 1}
+  #media
+    %thead
+      %th Merchant ID
+      %th Date
+      %th Location
+      %th View Coupon
+    %tbody
+      -#
+        - @media.each do |medium|
+          - if medium.user_id == @user.id          
+            %tr     
+              %td= @user.id   
+              %td= medium.created_at
+              %td= "(#{medium.latitude}, #{medium.longitude})"          
+              %td= link_to "View post", user_medium_path(@user.id,medium.id)
+  
+= link_to "Add new coupon", root_path

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # end
 
   resources :users, :only => [:show]
+  resources :merchants, :only => [:show]
 
   # get 'users/:id' => 'users/actions#show', :as => :user
   get 'users/:user_id/media' => 'media#index', :as => :user_media
