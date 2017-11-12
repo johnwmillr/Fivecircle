@@ -22,9 +22,13 @@ media =[{:note => "I love burritos...",   :latitude => 41.6602212, :longitude =>
         {:note => "I love reading...",    :latitude => 41.6595556, :longitude => -91.5388357, :user_id=> 4},
         {:note => "I love basketball...", :latitude => 41.6582506, :longitude => -91.5468282, :user_id=> 5}]
 
-merchant = [{:merchantName=>"Joe's Place", :username=>"JP",   :email => "JP@fake.com",   :password=>123456,:address=>"115 Iowa Ave, Iowa City, IA 52240",:latitude=>41.661075, :longitude=>-91.533891},
+merchants = [{:merchantName=>"Joe's Place", :username=>"JP",   :email => "JP@fake.com",   :password=>123456,:address=>"115 Iowa Ave, Iowa City, IA 52240",:latitude=>41.661075, :longitude=>-91.533891},
             {:merchantName=>"Pancheros",   :username=>"Panch",:email => "Panch@fake.com",:password=>123456,:address=>"32 S Clinton St, Iowa City, IA 52240",:latitude=>1.6602212,:longitude=>-91.53461424},
             {:merchantName=>"Main Library",:username=>"ML",   :email => "ML@fake.com",   :password=>123456,:address=>"125 West Washington St., Iowa City, IA 52242",:latitude=>41.6595556,:longitude=>-91.5388357}]
+
+coupons = [{:couponName=>"Free pizza",:description=>"One (1) free slice of pizza with purchase of ten (10) slices of pizza.", :merchant_id=>1},
+          {:couponName=>"Half off",  :description=>"One half (1/2) off the cost of a burrito.", :merchant_id=>2},
+          {:couponName=>"Free drink",:description=>"Free drink with purchase of book.", :merchant_id=>3}]          
 
 # Add the data to the database
 users.each do |user|
@@ -35,6 +39,10 @@ media.each do |medium|
   Medium.create!(medium)
 end
 
-merchant.each do |merchant|
+merchants.each do |merchant|
     Merchant.create!(merchant)
+end
+
+coupons.each do |coupon|
+    Coupon.create!(coupon)
 end

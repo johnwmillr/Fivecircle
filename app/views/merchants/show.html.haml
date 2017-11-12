@@ -2,6 +2,7 @@
 
 %h1 Merchant Profile
 %h2 (refresh page if map does not appear)
+-# TODO: Actually, don't we just want a static map for Merchants?
 %p
 .card
   .card-block
@@ -10,20 +11,21 @@
 %h1 Merchant Coupons
 
 %table{:border => 1}
-  #media
+  #coupons
     %thead
       %th Merchant ID
+      %th Name
       %th Date
       %th Location
       %th View Coupon
     %tbody
-      -#
-        - @media.each do |medium|
-          - if medium.user_id == @user.id          
-            %tr     
-              %td= @user.id   
-              %td= medium.created_at
-              %td= "(#{medium.latitude}, #{medium.longitude})"          
-              %td= link_to "View post", user_medium_path(@user.id,medium.id)
+      - @coupons.each do |coupon|
+        - if coupon.merchant_id == @merchant.id
+          %tr     
+            %td= @merchant.id   
+            %td= coupon.couponName
+            %td= coupon.created_at
+            %td= @merchant.address
+            %td= link_to "View coupon", merchant_coupon_path(@merchant.id,coupon.id)
   
 = link_to "Add new coupon", root_path

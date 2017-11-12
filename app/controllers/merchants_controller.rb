@@ -10,9 +10,6 @@ class MerchantsController < ApplicationController
       # else
       #     redirect_to root_path
       # end
-    # @merchants = Merchant.all
-    # @merchant  = Merchant.find(params[:id])
-    puts "*******************************************"
-    puts "params: " + params.inspect
+    @merchant  = Merchant.find(params[:id])
   end
 end

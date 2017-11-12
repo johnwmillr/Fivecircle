@@ -2,16 +2,21 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :set_media
+  before_filter :set_media, :set_coupons
 
+  # TODO: Figure out the proper way to make @media and @coupons accessible
   # This is almost certainly a kludge...
   # I need @media to be accessible by users_controller.rb
   def set_media
     # @media = Medium.all
     @media = Medium.where(user_id: params[:id])
   end
-  
-  
+
+  # Here's another kludge...
+  def set_coupons
+    @coupons = Coupon.where(merchant_id: params[:id])
+  end
+    
   protected
 
   def devise_parameter_sanitizer
