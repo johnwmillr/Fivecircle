@@ -44,6 +44,9 @@ gem 'hirb'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# s3 file uploads
+gem 'aws-sdk'
+
 
 group :test do
   gem 'rspec-expectations'

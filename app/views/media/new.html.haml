@@ -1,3 +1,7 @@
 -# in /views/media/new.html.haml
 
 %h1 New Media
+
+= form_tag :new_user_medium_upload, :multipart=>true  do
+  = file_field_tag 'file[]', multiple: true
+  = submit_tag "Import"

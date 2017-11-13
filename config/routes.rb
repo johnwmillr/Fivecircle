@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   get 'users/:user_id/media' => 'media#index', :as => :user_media
   post 'users/:user_id/media' => 'media#create'
   get 'users/:user_id/media/new' => 'media#new', :as =>:new_user_medium
+  
+  # upload photo via POST
+  # url and view, controller method, reference string
+  post 'users/:user_id/media/upload' => 'media#upload', :as =>:new_user_medium_upload
+  
   get 'users/:user_id/media/:id/edit' => 'media#edit', :as => :edit_user_medium
   get 'users/:user_id/media/:id' => 'media#show', :as => :user_medium
   patch 'users/:user_id/media/:id' => 'media#update'

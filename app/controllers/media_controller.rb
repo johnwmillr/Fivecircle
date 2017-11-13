@@ -7,6 +7,12 @@ def new
   # render the views/media/new.html.haml template
 end
 
+def upload
+  file_path = params[:file].path
+  
+  p 'file path ' + file_path
+end
+
 # def index
 #   @media = Medium.all
 # end
