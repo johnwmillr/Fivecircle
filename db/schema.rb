@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 20171103055459) do
   end
 
   add_index "merchants", ["email"], name: "index_merchants_on_email", unique: true
-  add_index "merchants", ["merchantName"], name: "index_merchants_on_merchantName", unique: true
   add_index "merchants", ["reset_password_token"], name: "index_merchants_on_reset_password_token", unique: true
+  add_index "merchants", ["username"], name: "index_merchants_on_username", unique: true
 
   create_table "saved_coupons", force: :cascade do |t|
     t.boolean  "validation"
