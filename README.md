@@ -14,4 +14,4 @@ $bundle exec rake db:migrate
 $bundle exec rake db:seed
 ```
 #### Server ####
-`$bundle exec rails server -p $PORT -b $IP`
+`$bundle exec rails server -p $PORT -b $IP` 
