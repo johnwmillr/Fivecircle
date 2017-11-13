@@ -49,5 +49,5 @@ jQuery ->
         setInterval () ->
             navigator.geolocation.getCurrentPosition applyLocation
             #alert('woo')
-        , 2000
+        , 1000
 
