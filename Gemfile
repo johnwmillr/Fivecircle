@@ -48,7 +48,7 @@ gem 'hirb'
 # gem 'capistrano-rails', group: :development
 
 #For facebook authentication
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '~> 4.0.0'
 
 
 group :test do
