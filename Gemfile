@@ -5,6 +5,9 @@ ruby '2.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 
+# Gem for Sqlite3
+gem 'sqlite3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -43,6 +46,9 @@ gem 'hirb'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+#For facebook authentication
+gem 'omniauth-facebook', '~> 4.0.0'
 
 
 group :test do
