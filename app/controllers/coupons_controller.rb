@@ -2,11 +2,15 @@ class CouponsController < ApplicationController
 
 def coupon_params
   params.require(:coupon).permit(:couponName, :description)
-  # coupon_params[:merchant_id] = current_merchant.id    
 end
 
 def show
-  @coupon = Coupon.find(params[:id])  
+  c = Coupon.where(:id=>params[:id],:merchant_id=>current_merchant[:id])
+  if c.length == 1
+    @coupon = c[0]
+  else
+    redirect_to merchant_path(current_merchant[:id])
+  end  
 end
 
 def new
@@ -18,7 +22,7 @@ def create
   cp[:merchant_id] = current_merchant[:id]
   @coupon = Coupon.create!(cp)
   flash[:notice] = "#{@coupon.couponName} was successfully created."
-  redirect_to merchant_path(cp[:merchant_id])
+  redirect_to merchant_path(current_merchant[:id])
 end
 
 end

@@ -1,7 +1,6 @@
 -# in app/views/merchants/show.html.haml
 
 %h1 Merchant Profile
-%h2 (refresh page if map does not appear)
 -# TODO: Actually, don't we just want a static map for Merchants?
 %p
 .card
@@ -27,5 +26,9 @@
             %td= coupon.created_at
             %td= @merchant.address
             %td= link_to "View coupon", merchant_coupon_path(@merchant.id,coupon.id)
+
+- if @coupons.length == 0
+  You haven't made any coupons yet.
+  %div
   
 = link_to "Add new coupon", new_merchant_coupon_path(@merchant.id)

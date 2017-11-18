@@ -10,8 +10,6 @@ class MerchantsController < ApplicationController
     else
       redirect_to root_path
     end
-
-    # @merchant  = Merchant.find(params[:id])
   end
 
 end
