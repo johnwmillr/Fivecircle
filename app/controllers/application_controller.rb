@@ -8,13 +8,16 @@ class ApplicationController < ActionController::Base
   # This is almost certainly a kludge...
   # I need @media to be accessible by users_controller.rb
   def set_media
-    # @media = Medium.all
-    @media = Medium.where(user_id: params[:id])
+    if current_user
+      @media = Medium.where(user_id: current_user[:id])
+    end
   end
 
   # Here's another kludge...
   def set_coupons
-    @coupons = Coupon.where(merchant_id: params[:id])
+    if current_merchant
+      @coupons = Coupon.where(merchant_id: current_merchant[:id])
+    end
   end
     
   protected

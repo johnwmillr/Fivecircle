@@ -14,12 +14,11 @@ def new
 end
 
 def create
-  uid = 1 # TODO: Fix this
   cp = coupon_params
-  cp[:merchant_id] = uid
+  cp[:merchant_id] = current_merchant[:id]
   @coupon = Coupon.create!(cp)
   flash[:notice] = "#{@coupon.couponName} was successfully created."
-  redirect_to merchant_path(uid)
+  redirect_to merchant_path(cp[:merchant_id])
 end
 
 end

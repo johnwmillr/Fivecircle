@@ -5,11 +5,13 @@ class MerchantsController < ApplicationController
   end
 
   def show
-      # if current_user
-      #     @user = current_user
-      # else
-      #     redirect_to root_path
-      # end
-    @merchant  = Merchant.find(params[:id])
+    if current_merchant
+      @merchant = current_merchant
+    else
+      redirect_to root_path
+    end
+
+    # @merchant  = Merchant.find(params[:id])
   end
+
 end
