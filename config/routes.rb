@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # end
 
   resources :users, :only => [:show]
+  resources :merchants, :only => [:show]
+  resources :coupons # This makes the new user form work, but it's not what we want
 
   # get 'users/:id' => 'users/actions#show', :as => :user
   get 'users/:user_id/media' => 'media#index', :as => :user_media
@@ -20,6 +22,16 @@ Rails.application.routes.draw do
   patch 'users/:user_id/media/:id' => 'media#update'
   put 'users/:user_id/media/:id' => 'media#update'
   delete 'users/:user_id/media/:id' => 'media#destroy'
+
+  # get 'merchants/:id' => 'merchants/actions#show', :as => :merchant
+  get 'merchants/:merchant_id/coupons' => 'coupons#index', :as => :merchant_coupons
+  post 'merchants/:merchant_id/coupons' => 'coupons#create'
+  get 'merchants/:merchant_id/coupons/new' => 'coupons#new', :as =>:new_merchant_coupon
+  get 'merchants/:merchant_id/coupons/:id/edit' => 'coupons#edit', :as => :edit_merchant_coupon
+  get 'merchants/:merchant_id/coupons/:id' => 'coupons#show', :as => :merchant_coupon
+  patch 'merchants/:merchant_id/coupons/:id' => 'coupons#update'
+  put 'merchants/:merchant_id/coupons/:id' => 'coupons#update'
+  delete 'merchants/:merchant_id/coupons/:id' => 'coupons#destroy'
   
   # root :to => redirect('/users')
 

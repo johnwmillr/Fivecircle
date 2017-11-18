@@ -39,7 +39,7 @@ class DeviseCreateMerchants < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :merchants, :merchantName,         unique: true
+    add_index :merchants, :username,             unique: true
     add_index :merchants, :email,                unique: true
     add_index :merchants, :reset_password_token, unique: true
     # add_index :merchants, :confirmation_token,   unique: true
