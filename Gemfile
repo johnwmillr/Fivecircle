@@ -51,6 +51,11 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'simplecov', :require => false
+  gem 'webmock'
+  gem 'factory_girl_rails'
+  gem 'guard-rspec'
+  gem 'spring-commands-rspec'
+  gem 'vcr'
 end
 
 group :development do

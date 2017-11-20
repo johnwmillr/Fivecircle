@@ -72,6 +72,8 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     crass (1.0.2)
     cucumber (3.0.1)
       builder (>= 2.1.2)
@@ -107,6 +109,11 @@ GEM
     docile (1.1.5)
     erubis (2.7.0)
     execjs (2.7.0)
+    factory_girl (4.9.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.9.0)
+      factory_girl (~> 4.9.0)
+      railties (>= 3.0.0)
     ffi (1.9.18)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
@@ -133,6 +140,7 @@ GEM
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
+    hashdiff (0.3.7)
     hirb (0.7.3)
     i18n (0.9.0)
       concurrent-ruby (~> 1.0)
@@ -239,6 +247,7 @@ GEM
       rspec-support (~> 3.7.0)
     rspec-support (3.7.0)
     ruby_dep (1.5.0)
+    safe_yaml (1.0.4)
     sass (3.5.2)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -263,6 +272,8 @@ GEM
     simplecov-html (0.10.2)
     spring (2.0.2)
       activesupport (>= 4.2)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -282,6 +293,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    vcr (3.0.3)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (2.3.0)
@@ -289,6 +301,10 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    webmock (3.1.1)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
     xpath (2.1.0)
       nokogiri (~> 1.3)
 
@@ -304,6 +320,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   devise
+  factory_girl_rails
   geocoder
   guard-rspec
   haml
@@ -319,10 +336,13 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   simplecov
   spring
+  spring-commands-rspec
   sqlite3
   turbolinks
   uglifier (>= 1.3.0)
+  vcr
   web-console (~> 2.0)
+  webmock
 
 RUBY VERSION
    ruby 2.3.0p0
