@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   # scope :users/:user_id do
   #   resources :media
   # end
+  
+#   devise_scope :user do
+#   get "/users/sign_in" => "sessions_controller"
+# end
 
   resources :users, :only => [:show]
   resources :merchants, :only => [:show]
