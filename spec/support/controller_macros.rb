@@ -2,7 +2,8 @@ module ControllerMacros
   def login_merchant
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:merchant]
-      sign_in FactoryGirl.create(:merchant) # Using factory girl as an example
+      merchant = FactoryGirl.create(:merchant) # Using factory girl as an example
+      sign_in merchant
     end
   end
 

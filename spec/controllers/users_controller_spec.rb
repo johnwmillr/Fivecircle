@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  login_user
+  
   describe 'viewing user profile' do
+    login_user
     it "should have a current_user" do
       # note the fact that you should remove the "validate_session" parameter if this was a scaffold-generated controller
       expect(subject.current_user).to_not eq(nil)
@@ -19,6 +20,15 @@ RSpec.describe UsersController, type: :controller do
       get :show, {:id => subject.current_user}
       expect( response ).to render_template( 'show' )
     end
+    
+    describe 'no logged in should go to root path' do
+      #login_merchant
+      it 'shouldredirect to root path' do
+        get :show, {:id => nil}
+        expect(response).to render_template('welcome')
+      end
+    end
+      
 
   end  
   
