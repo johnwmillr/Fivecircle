@@ -17,7 +17,7 @@ describe Users::SessionsController, :type => :controller do
     end
     it "should let a user see all the posts" do
       login_with create( :user )
-      get :index
+      get :show
       expect( response ).to render_template( :index )
     end
 
