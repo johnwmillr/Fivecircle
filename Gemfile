@@ -44,6 +44,9 @@ gem 'hirb'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#For facebook authentication
+gem 'omniauth-facebook', '~> 4.0.0'
+
 
 group :test do
   gem 'rspec-expectations'

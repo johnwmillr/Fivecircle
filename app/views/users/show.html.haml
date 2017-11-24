@@ -1,8 +1,7 @@
 -# in app/views/users/show.html.haml
 -# I realize using @user.id is kind of a kludge. We should use a @current_user variable
 
-%h1 User #{@user.id} Profile (it should show current location)
-%h2 (refresh page if map does not appear)
+%h1 User #{@user.id} Profile
 %p
 .card
   .card-block
@@ -25,5 +24,9 @@
             %td= medium.created_at
             %td= "(#{medium.latitude}, #{medium.longitude})"          
             %td= link_to "View post", user_medium_path(@user.id,medium.id)
-  
+
+- if @media.length == 0
+  You haven't dropped any media yet.
+  %div  
+
 = link_to "Add new post", new_user_medium_path(@user.id)
