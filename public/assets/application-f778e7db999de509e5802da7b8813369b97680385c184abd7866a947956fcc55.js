@@ -11493,7 +11493,7 @@ return jQuery;
         return false;
 
       } else if (method) {
-        rails.handleMethod(link);
+        rails.handleMethod(link); 
         return false;
       }
     });
