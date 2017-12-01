@@ -1,13 +1,13 @@
-(function() {
-  jQuery(function() {
-    var applyLocation, lat_field, lng_field, marker, markersArray;
+
+var applyLocation, lat_field, lng_field, marker, markersArray;
     markersArray = [];
     marker = null;
-    lat_field = $('#place_latitude');
-    lng_field = $('#place_longitude');
+    lat_field = document.getElementById('place_latitude');
+    lng_field = document.getElementById('place_longitude');
     window.initMap = function() {
       var map, mapOptions;
-      if ($('#map').size() > 0) {
+      var a = document.getElementsByTagName("div")
+      if (a.main) {
         mapOptions = {
           center: new google.maps.LatLng(41.66085, -91.53054),
           zoom: 19,
@@ -31,11 +31,9 @@
     applyLocation = function(location) {
       return marker.setPosition(new google.maps.LatLng(location.coords.latitude, location.coords.longitude));
     };
-    return $(document).ready(function() {
+    document.addEventListener("DOMContentLoaded", function(event) { 
       return setInterval(function() {
         return navigator.geolocation.getCurrentPosition(applyLocation);
       }, 1000);
     });
-  });
-
-}).call(this);
+    
