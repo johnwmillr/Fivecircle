@@ -6,9 +6,9 @@
 .card
   .card-block
     #map
+    = link_to "Check-in", new_user_medium_path(@user.id)
 
 %h1 User #{@user.id} Media
-
 %table{:border => 1}
   #media
     %thead
