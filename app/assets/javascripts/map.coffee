@@ -1,14 +1,18 @@
 jQuery ->
     markersArray = []
     marker = null
-    lat_field = $('#place_latitude')
-    lng_field = $('#place_longitude')
+    mapOptions = null
+    lat_field = 0#$('#place_latitude')
+    lng_field = 0#$('#place_longitude')
+    lat =$('#lat')
+    #.geolocation.getCurrentPosition applyLocation
     window.initMap = ->
+        
         if $('#map').size() > 0
             #Defining settings for map
             mapOptions =
                 center: new google.maps.LatLng(41.66085, -91.53054)
-                zoom: 19
+                zoom: 17
                 streetViewControl: false
                 panControl: false
                 mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -23,6 +27,7 @@ jQuery ->
             marker = new google.maps.Marker
                 map: map
                 position: new google.maps.LatLng(41.66085, -91.53054)
+            #navigator.geolocation.getCurrentPosition applyLocation
         
         # map.addListener 'click', (e) ->
         #     placeMarkerAndPanTo e.latLng, map
@@ -44,10 +49,23 @@ jQuery ->
     applyLocation = (location) ->
         #alert('Latitude:' + location.coords.latitude + ', Longitude: ' + location.coords.longitude + ', Accuracy: ' + location.coords.accuracy)
         marker.setPosition(new google.maps.LatLng(location.coords.latitude, location.coords.longitude))
+        center: new google.maps.LatLng(location.coords.latitude,location.coords.longitude)
+        lat_field = location.coords.latitude
+        lng_field = location.coords.longitude
+        #console.log(lat_field)
+        #$('#lat') = location.coords.latitude
 
     $(document).ready ->
+        #navigator.geolocation.getCurrentPosition applyLocation
+        $.ajax '/',
+		type: 'GET'
+		dataType: 'html'
+		error: (jqXHR, textStatus, errorThrown) ->
+			$('body').append "AJAX Error: #{textStatus}"
+		success: (data, textStatus, jqXHR) ->
+			$('body').append "Successful AJAX call: #{data}"
         setInterval () ->
+            console.log(lat)
             navigator.geolocation.getCurrentPosition applyLocation
-            #alert('woo')
         , 1000
 

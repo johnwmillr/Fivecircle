@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   put 'users/:user_id/media/:id' => 'media#update'
   delete 'users/:user_id/media/:id' => 'media#destroy'
   
+  get 'users/:user_id/checkin/:id/edit' => 'checkin#update', :as =>:update_user_checkin
+  
   # root :to => redirect('/users')
 
   # You can have the root of your site routed with "root"
