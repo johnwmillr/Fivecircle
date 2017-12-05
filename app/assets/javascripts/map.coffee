@@ -1,7 +1,6 @@
 jQuery ->
     markersArray = []
     marker = null
-    mapOptions = null
     lat_field = 0#$('#place_latitude')
     lng_field = 0#$('#place_longitude')
     lat =$('#lat')
@@ -47,25 +46,26 @@ jQuery ->
     #     lng_field.val latLng.lng()
         
     applyLocation = (location) ->
-        #alert('Latitude:' + location.coords.latitude + ', Longitude: ' + location.coords.longitude + ', Accuracy: ' + location.coords.accuracy)
         marker.setPosition(new google.maps.LatLng(location.coords.latitude, location.coords.longitude))
-        center: new google.maps.LatLng(location.coords.latitude,location.coords.longitude)
+        #center: new google.maps.LatLng(location.coords.latitude,location.coords.longitude)
         lat_field = location.coords.latitude
         lng_field = location.coords.longitude
-        #console.log(lat_field)
-        #$('#lat') = location.coords.latitude
 
     $(document).ready ->
         #navigator.geolocation.getCurrentPosition applyLocation
-        $.ajax '/',
-		type: 'POST'
-		dataType: 'html'
-		error: (jqXHR, textStatus, errorThrown) ->
-			$('body').append "AJAX Error: #{textStatus}"
-		success: (data, textStatus, jqXHR) ->
-			$('body').append "Successful AJAX call: #{data}"
         setInterval () ->
-            console.log(lat)
             navigator.geolocation.getCurrentPosition applyLocation
         , 1000
+        
+        $('#Check-in').click (e) ->
+            e.preventDefault()
+            $.ajax 'users/:user_id/checkin',
+                type: 'POST'
+                dataType: 'html'
+                data: '#{lat_field}","+#{lng_field}'
+                error: (jqXHR, textStatus, errorThrown) ->
+                    alert textStatus
+                success: (data, textStatus, jqXHR) ->
+                    console.log "checked in"
+
 
