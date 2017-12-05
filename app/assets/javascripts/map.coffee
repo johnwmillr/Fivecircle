@@ -58,7 +58,7 @@ jQuery ->
     $(document).ready ->
         #navigator.geolocation.getCurrentPosition applyLocation
         $.ajax '/',
-		type: 'GET'
+		type: 'POST'
 		dataType: 'html'
 		error: (jqXHR, textStatus, errorThrown) ->
 			$('body').append "AJAX Error: #{textStatus}"
