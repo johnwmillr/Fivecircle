@@ -1,5 +1,7 @@
 
-var applyLocation, lat_field, lng_field, marker, markersArray;
+
+    document.addEventListener("DOMContentLoaded", function(event) { 
+      var applyLocation, lat_field, lng_field, marker, markersArray;
     markersArray = [];
     marker = null;
     lat_field = document.getElementById('place_latitude');
@@ -31,7 +33,8 @@ var applyLocation, lat_field, lng_field, marker, markersArray;
     applyLocation = function(location) {
       return marker.setPosition(new google.maps.LatLng(location.coords.latitude, location.coords.longitude));
     };
-    document.addEventListener("DOMContentLoaded", function(event) { 
+    
+    
       return setInterval(function() {
         return navigator.geolocation.getCurrentPosition(applyLocation);
       }, 1000);
