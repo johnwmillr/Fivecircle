@@ -4,8 +4,7 @@ ruby '2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -20,6 +19,12 @@ gem 'google_maps_service'
 
 # Use Haml as the templating library
 gem 'haml'
+
+# For CSS stuff
+gem 'bootstrap', '~> 4.0.0.alpha3'
+
+# For the geocoding
+gem 'geocoder'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -42,6 +47,28 @@ gem 'hirb'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#For facebook authentication
+gem 'omniauth-facebook', '~> 4.0.0'
+
+
+group :test do
+  gem 'rspec-expectations'
+  gem 'cucumber-rails', :require=>false
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'simplecov', :require => false
+  gem 'webmock'
+  gem 'factory_girl_rails'
+  gem 'guard-rspec'
+  gem 'spring-commands-rspec'
+  gem 'vcr'
+end
+
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -49,8 +76,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
 
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'sqlite3'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -59,4 +85,9 @@ end
 group :production do
   gem 'pg' # for Heroku deployment
   gem 'rails_12factor'
+end
+
+group :password do
+  gem 'devise'
+  gem 'authlogic'
 end

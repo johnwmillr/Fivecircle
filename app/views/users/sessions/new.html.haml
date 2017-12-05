@@ -1,0 +1,27 @@
+%h1 Log in 
+
+-unless @user ==nil
+  -if @user.errors.any?
+    %ul
+    -@user.errors.full_messages.each do |msg|
+      %li #{msg}
+
+= form_tag user_session_path, :id=>'login_form' do
+
+  = label :user, :username, 'Five Circle ID'
+  = text_field :user, 'username'
+
+  = label :user, :password, 'Password'
+  = password_field :user, 'password'
+  
+  -if devise_mapping.rememberable?
+    <br>
+    remember me
+    =check_box_tag "remember_me", 1, :id => "remember_tag"
+  <br>
+  = submit_tag 'Log in'
+  <br>
+  = render "users/shared/links"
+
+
+
