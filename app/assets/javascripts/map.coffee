@@ -1,14 +1,14 @@
 jQuery ->
     markersArray = []
+    map = null
     marker = null
-    lat_field = $('#place_latitude')
-    lng_field = $('#place_longitude')
+
     window.initMap = ->
-        if $('#map').size() > 0
+        if $('#map').size() > 0            
             #Defining settings for map
-            mapOptions =
-                center: new google.maps.LatLng(41.66085, -91.53054)
-                zoom: 19
+            mapOptions =                
+                center: new google.maps.LatLng(41.6608501,-91.5305475)
+                zoom: 15
                 streetViewControl: false
                 panControl: false
                 mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -22,32 +22,17 @@ jQuery ->
             
             marker = new google.maps.Marker
                 map: map
-                position: new google.maps.LatLng(41.66085, -91.53054)
-        
-        # map.addListener 'click', (e) ->
-        #     placeMarkerAndPanTo e.latLng, map
-        #     updateFields e.latLng
+                # position: new google.maps.LatLng(lat,lon)
 
-    # placeMarkerAndPanTo = (latLng, map) ->
-    #     alert(latlng)
-    #     markersArray.pop().setMap(null) while(markersArray.length)
-    #     marker = new google.maps.Marker
-    #         position: latLng
-    #         map: map
-    #     map.panTo latLng
-    #     markersArray.push marker
-
-    # updateFields = (latLng) ->
-    #     lat_field.val latLng.lat()
-    #     lng_field.val latLng.lng()
-        
     applyLocation = (location) ->
-        #alert('Latitude:' + location.coords.latitude + ', Longitude: ' + location.coords.longitude + ', Accuracy: ' + location.coords.accuracy)
-        marker.setPosition(new google.maps.LatLng(location.coords.latitude, location.coords.longitude))
+        latitude = location.coords.latitude
+        longitude = location.coords.longitude
+        marker.setPosition(new google.maps.LatLng(latitude, longitude))
+        map.setCenter(new google.maps.LatLng(latitude, longitude))
+        map.setZoom(19)
+
 
     $(document).ready ->
-        setInterval () ->
+        setInterval () ->            
             navigator.geolocation.getCurrentPosition applyLocation
-            #alert('woo')
         , 1000
-
