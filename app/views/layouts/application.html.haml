@@ -1,5 +1,5 @@
 !!!
-%html
+%html.container-fluid
   %head
     %title Fivecircle
     = stylesheet_link_tag 'application', 'media' => 'all', 'data-turbolinks-track' => true
@@ -7,8 +7,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  %body
-    %h1.title.bg-primary Five Circles!
+  %body.container-fluid
+    %h1.bg-primary Five Circles!
     #main.bg-inverse
       - if flash[:notice]
         #notice.message= flash[:notice]
