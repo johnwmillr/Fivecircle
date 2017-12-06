@@ -44,6 +44,9 @@ gem 'hirb'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#For facebook authentication
+gem 'omniauth-facebook', '~> 4.0.0'
+
 
 group :test do
   gem 'rspec-expectations'
@@ -51,6 +54,11 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'simplecov', :require => false
+  gem 'webmock'
+  gem 'factory_girl_rails'
+  gem 'guard-rspec'
+  gem 'spring-commands-rspec'
+  gem 'vcr'
 end
 
 group :development do

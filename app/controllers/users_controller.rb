@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
+
     def user_params
         params.require(:user).permit(:email, :lastAddress, :latitude, :longitude)
     end
+
+    #before_action :authenticate_user!
+
     def show
         if current_user
             @user = current_user

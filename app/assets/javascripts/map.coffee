@@ -1,17 +1,14 @@
 jQuery ->
     markersArray = []
+    map = null
     marker = null
-    lat_field = 0#$('#place_latitude')
-    lng_field = 0#$('#place_longitude')
-    lat =$('#lat')
-    #.geolocation.getCurrentPosition applyLocation
+
     window.initMap = ->
-        
-        if $('#map').size() > 0
+        if $('#map').size() > 0            
             #Defining settings for map
-            mapOptions =
-                center: new google.maps.LatLng(41.66085, -91.53054)
-                zoom: 17
+            mapOptions =                
+                center: new google.maps.LatLng(41.6608501,-91.5305475)
+                zoom: 15
                 streetViewControl: false
                 panControl: false
                 mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -25,47 +22,17 @@ jQuery ->
             
             marker = new google.maps.Marker
                 map: map
-                position: new google.maps.LatLng(41.66085, -91.53054)
-            #navigator.geolocation.getCurrentPosition applyLocation
-        
-        # map.addListener 'click', (e) ->
-        #     placeMarkerAndPanTo e.latLng, map
-        #     updateFields e.latLng
+                # position: new google.maps.LatLng(lat,lon)
 
-    # placeMarkerAndPanTo = (latLng, map) ->
-    #     alert(latlng)
-    #     markersArray.pop().setMap(null) while(markersArray.length)
-    #     marker = new google.maps.Marker
-    #         position: latLng
-    #         map: map
-    #     map.panTo latLng
-    #     markersArray.push marker
-
-    # updateFields = (latLng) ->
-    #     lat_field.val latLng.lat()
-    #     lng_field.val latLng.lng()
-        
     applyLocation = (location) ->
-        marker.setPosition(new google.maps.LatLng(location.coords.latitude, location.coords.longitude))
-        #center: new google.maps.LatLng(location.coords.latitude,location.coords.longitude)
-        lat_field = location.coords.latitude
-        lng_field = location.coords.longitude
+        latitude = location.coords.latitude
+        longitude = location.coords.longitude
+        marker.setPosition(new google.maps.LatLng(latitude, longitude))
+        map.setCenter(new google.maps.LatLng(latitude, longitude))
+        map.setZoom(19)
+
 
     $(document).ready ->
-        #navigator.geolocation.getCurrentPosition applyLocation
-        setInterval () ->
+        setInterval () ->            
             navigator.geolocation.getCurrentPosition applyLocation
         , 1000
-        
-        $('#Check-in').click (e) ->
-            e.preventDefault()
-            $.ajax 'users/:user_id/checkin',
-                type: 'POST'
-                dataType: 'text'
-                data: {coordinates: {lat: lat_field, lon: lng_field},
-                error: (jqXHR, textStatus, errorThrown) ->
-                    alert textStatus
-                success: (data, textStatus, jqXHR) ->
-                    console.log "checked in"
-
-

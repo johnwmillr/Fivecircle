@@ -10,10 +10,16 @@ class Users::SessionsController < Devise::SessionsController
   def create
     user = User.find_by_username(params[:user][:username])
     if user && user.valid_password?(params[:user][:password])
-      #sign in and redirect to show page
-      super
+      if !current_merchant
+        #sign in and redirect to show page
+        super
+      else
+        flash[:warning] = 'logout merchant first to login user'
+        redirect_to root_path
+      end
+      
     else
-      flash.now[:warning] = 'Invalid email/password combination'
+      flash[:warning] = 'Invalid email/password combination'
       render 'new'
     end  
     

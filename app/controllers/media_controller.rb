@@ -12,12 +12,12 @@ end
 # end
 
 def show
-  # if @current_user.id == params[:user_id]
-  #   @medium = Medium.find(params[:id])
-  # else
-  #   redirect_to user_path
-  # end
-  @medium = Medium.find(params[:id])  
+  m = Medium.where(:id=>params[:id], :user_id=>current_user[:id])
+  if m.length == 1
+    @medium = m[0]
+  else
+    redirect_to user_path(current_user[:id])
+  end
 end
 
 end

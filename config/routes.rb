@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :merchants, path: 'merchants', controllers: {sessions: "merchants/sessions", registrations:"merchants/registrations",passwords:"merchants/passwords"}
-  devise_for :users, path: 'users', controllers: {sessions: "users/sessions", registrations:"users/registrations",passwords:"users/passwords"}
+  devise_for :users, path: 'users', controllers: {sessions: "users/sessions", registrations:"users/registrations",passwords:"users/passwords", omniauth_callbacks:"users/omniauth_callbacks" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -8,8 +8,14 @@ Rails.application.routes.draw do
   # scope :users/:user_id do
   #   resources :media
   # end
+  
+#   devise_scope :user do
+#   get "/users/sign_in" => "sessions_controller"
+# end
 
   resources :users, :only => [:show]
+  resources :merchants, :only => [:show]
+  resources :coupons # This makes the new user form work, but it's not what we want
 
   # get 'users/:id' => 'users/actions#show', :as => :user
   get 'users/:user_id/media' => 'media#index', :as => :user_media
@@ -20,6 +26,16 @@ Rails.application.routes.draw do
   patch 'users/:user_id/media/:id' => 'media#update'
   put 'users/:user_id/media/:id' => 'media#update'
   delete 'users/:user_id/media/:id' => 'media#destroy'
+
+  # get 'merchants/:id' => 'merchants/actions#show', :as => :merchant
+  get 'merchants/:merchant_id/coupons' => 'coupons#index', :as => :merchant_coupons
+  post 'merchants/:merchant_id/coupons' => 'coupons#create'
+  get 'merchants/:merchant_id/coupons/new' => 'coupons#new', :as =>:new_merchant_coupon
+  get 'merchants/:merchant_id/coupons/:id/edit' => 'coupons#edit', :as => :edit_merchant_coupon
+  get 'merchants/:merchant_id/coupons/:id' => 'coupons#show', :as => :merchant_coupon
+  patch 'merchants/:merchant_id/coupons/:id' => 'coupons#update'
+  put 'merchants/:merchant_id/coupons/:id' => 'coupons#update'
+  delete 'merchants/:merchant_id/coupons/:id' => 'coupons#destroy'
   
   post 'users/:user_id/checkin' => 'users#update_chekin', :as =>:update_user_checkin
   

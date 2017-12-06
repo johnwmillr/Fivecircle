@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171103055459) do
+ActiveRecord::Schema.define(version: 20171107025814) do
 
   create_table "coupons", force: :cascade do |t|
     t.string   "couponName"
@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 20171103055459) do
   end
 
   add_index "merchants", ["email"], name: "index_merchants_on_email", unique: true
-  add_index "merchants", ["merchantName"], name: "index_merchants_on_merchantName", unique: true
   add_index "merchants", ["reset_password_token"], name: "index_merchants_on_reset_password_token", unique: true
+  add_index "merchants", ["username"], name: "index_merchants_on_username", unique: true
 
   create_table "saved_coupons", force: :cascade do |t|
     t.boolean  "validation"
@@ -100,6 +100,8 @@ ActiveRecord::Schema.define(version: 20171103055459) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
