@@ -16,12 +16,14 @@
         #warning.message= flash[:warning]
 
       - if current_user
-        %p You are logged in as #{current_user.email} (User name: #{current_user.username})
+        %p.text-center You are logged in as #{current_user.email} (User name: #{current_user.username})
+        %br
         = button_to 'Log Out', destroy_user_session_path, :method => 'delete' , class:"btn btn-warning"
+        %br
         %p.profile= link_to 'View Profile', user_path(current_user)
 
       - elsif current_merchant
-        %p.alert You are logged in as #{current_merchant.email} (Merchant name: #{current_merchant.merchantName})
+        %p.text-center You are logged in as #{current_merchant.email} (Merchant name: #{current_merchant.merchantName})
         = button_to 'Log Out', destroy_merchant_session_path, :method => 'delete' , class:"btn btn-warning"
         %p.profile= link_to 'View Profile', merchant_path(current_merchant)
       - else
