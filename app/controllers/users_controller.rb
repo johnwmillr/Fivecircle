@@ -18,22 +18,30 @@ class UsersController < ApplicationController
     end
     
     def checkin
+        @geodata = params['coordinates']
+        lat = @geodata["latitude"].to_f
+        lon = @geodata["longitude"].to_f
 
-        lat = params['coordinates']['lat']
-        lon = params['coordinates']['lon']
-        
-        @user.update(latitude: lat, longitude: long)
-        
-        
-        result = Pipe.where{ST_Distance(
-          ST_Transform(location,26986),
-          ST_Transform(ST_GeomFromText("POINT(#{lat} #{lon})", 4326), 26986)) < 500}.count   
-        rez = {"near" => result}
-        respond_to do |format|
-        format.html
-        format.json { render json: rez }  # respond with the created JSON object
+        # Store lat and lon in database
+        if current_user
+          current_user.update(latitude: lat, longitude: lon)
+        end        
 
-        end
+        puts '********************'
+        puts "Coord: " + [lat,lon].inspect
+
+        # Convert the lat/lon coordinates into an address
+        # This method is on John's explore-google-maps branch               
+        # reverse_geocode([lat,lon])
+        
+        # result = Pipe.where{ST_Distance(
+        #   ST_Transform(location,26986),
+        #   ST_Transform(ST_GeomFromText("POINT(#{lat} #{lon})", 4326), 26986)) < 500}.count   
+        # rez = {"near" => result}
+        # respond_to do |format|
+        # format.html
+        # format.json { render json: rez }  # respond with the created JSON object
+
     end
     
     def update_loc

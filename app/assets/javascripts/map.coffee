@@ -49,19 +49,15 @@ jQuery ->
     #         error:  alert('Error!')
 
     testAjax = (location) ->
-        console.log('Testing AJAX...')
         lat = location.coords.latitude
-        log = location.coords.longitude
-        console.log('lat: ')
-        console.log(lat)
-        $.ajax 'checkin',
+        lon = location.coords.longitude
+        $.ajax ':user_id/checkin',
             type: "POST"
-            dataType: "text"
-            coordinates: {lat: x, lon: y}
-            data: {coordinates:{lat: "#{lat}", lon: "#{log}"}            
+            # dataType: "text"
+            data: {coordinates: {latitude: lat, longitude: lon}}
             success: (data, textStatus, jqXHR) ->
-                $('body').append "Successful AJAX call."            
-        
+                $('body').append "Successful AJAX call."      
+              
     $(document).ready ->
         if zoom_and_pan_were_set != true
             navigator.geolocation.getCurrentPosition(testAjax)
