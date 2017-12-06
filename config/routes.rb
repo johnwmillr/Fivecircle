@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   put 'merchants/:merchant_id/coupons/:id' => 'coupons#update'
   delete 'merchants/:merchant_id/coupons/:id' => 'coupons#destroy'
   
-  post 'users/:user_id/checkin' => 'users#update_chekin', :as =>:update_user_checkin
+  post 'users/:user_id/checkin' => 'users#checkin', :as =>:user_checkin
   
   # root :to => redirect('/users')
 

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     def add_location
     end
     
-    def update_chekin
+    def checkin
 
         lat = params['coordinates']['lat']
         lon = params['coordinates']['lon']
