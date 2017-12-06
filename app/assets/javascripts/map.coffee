@@ -61,8 +61,8 @@ jQuery ->
             e.preventDefault()
             $.ajax 'users/:user_id/checkin',
                 type: 'POST'
-                dataType: 'html'
-                data: '#{lat_field}","+#{lng_field}'
+                dataType: 'text'
+                data: {coordinates: {lat: lat_field, lon: lng_field},
                 error: (jqXHR, textStatus, errorThrown) ->
                     alert textStatus
                 success: (data, textStatus, jqXHR) ->

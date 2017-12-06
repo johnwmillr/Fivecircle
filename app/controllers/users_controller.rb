@@ -17,6 +17,10 @@ class UsersController < ApplicationController
 
         lat = params['coordinates']['lat']
         lon = params['coordinates']['lon']
+        
+        @user.update(latitude: lat, longitude: long)
+        
+        
         result = Pipe.where{ST_Distance(
           ST_Transform(location,26986),
           ST_Transform(ST_GeomFromText("POINT(#{lat} #{lon})", 4326), 26986)) < 500}.count   
@@ -26,5 +30,9 @@ class UsersController < ApplicationController
         format.json { render json: rez }  # respond with the created JSON object
 
         end
+    end
+    
+    def update_loc
+        
     end
 end
