@@ -1,4 +1,4 @@
-%h1 Sign-up 
+%h1.bg-info Sign Up
 
 -unless @user ==nil
   -if @user.errors.any?
@@ -6,7 +6,7 @@
     -@user.errors.full_messages.each do |msg|
       %li #{msg}
 
-= form_tag user_registration_path, :id=>'signup_form' do
+= form_tag user_registration_path, :id=>'signup_form', class:"center" do
 
   = label :user, :username, 'Five Circle ID'
   = text_field :user, 'username'
@@ -22,7 +22,10 @@
 
   = label :user, :password_confirmation, 'Confirm Password'
   = password_field :user, 'password_confirmation'
+  %br
 
+  %br
   = submit_tag 'Create my account' , class:"btn btn-primary"
   <br>
+  %br
   = render "users/shared/links"
