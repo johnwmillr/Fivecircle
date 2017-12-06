@@ -7,9 +7,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  %body.bg-yellow
+  %body
     %h1.title.bg-primary Five Circles!
-    #main
+    #main.bg-inverse
       - if flash[:notice]
         #notice.message= flash[:notice]
       - elsif flash[:warning]
