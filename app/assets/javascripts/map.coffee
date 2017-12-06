@@ -22,16 +22,30 @@ jQuery ->
             marker = new google.maps.Marker
                 map: map
 
-    updateMap = (location) ->
-        # Moves the marker to user's current location        
+    updateMap = (location) ->    
         coords = location.coords
-        marker.setPosition(new google.maps.LatLng(coords.latitude, coords.longitude))
-        
-        # Also readjusts the map center and zoom level the first time it runs
-        if zoom_and_pan_were_set == false
+        # Readjusts the map center and zoom level the first time it runs
+        if zoom_and_pan_were_set != true
             map.setCenter(new google.maps.LatLng(coords.latitude, coords.longitude))
             map.setZoom(19)
             zoom_and_pan_were_set = true
 
-    $(document).ready ->
+        # Moves the marker to user's current location        
+        marker.setPosition(new google.maps.LatLng(coords.latitude, coords.longitude))
+
+    testAjax = (location) ->
+        lat = location.coords.latitude
+        lon = location.coords.longitude
+        $.ajax 'checkin',
+            type: "POST"
+            # dataType: "text"
+            data: {coordinates: {latitude: lat, longitude: lon}}
+            success: (data, textStatus, jqXHR) ->
+                $('body').append "Successful AJAX call."            
+        
+    $(document).ready ->        
+        if zoom_and_pan_were_set != true
+            navigator.geolocation.getCurrentPosition(testAjax)
+
         id = navigator.geolocation.watchPosition(updateMap)
+

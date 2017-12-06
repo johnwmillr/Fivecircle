@@ -11,13 +11,16 @@ api_key = file_lines[0]
 gmaps = GoogleMapsService::Client.new(key: api_key)
 
 # Do some reverse geocoding
-# latlong = [41.6609926,-91.5359006] # Pentacrest
-# latlong = [41.6596182,-91.5369034] # Seamans Center
-latlong = [41.660214,-91.5343671]  # Pancheros
+# latlong = [41.6594775,-91.5384874] # Main library
+latlong = [41.657228, -91.538326] # CRWC
+# latlong = [41.6596202,-91.5368124] # Seamans Center
+# latlong = [41.660214,-91.5343671]  # Pancheros
 results = gmaps.reverse_geocode(latlong)
 
+puts '********************'
+puts 'Lat/Long: ' + latlong.inspect
 results.each do |r|
-    puts '-----------'
+    puts '-----------'  
     puts r[:formatted_address].inspect
 end
 

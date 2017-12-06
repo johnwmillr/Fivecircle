@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   put 'users/:user_id/media/:id' => 'media#update'
   delete 'users/:user_id/media/:id' => 'media#destroy'
 
+  post 'users/checkin' => 'users#checkin'
+
   # get 'merchants/:id' => 'merchants/actions#show', :as => :merchant
   get 'merchants/:merchant_id/coupons' => 'coupons#index', :as => :merchant_coupons
   post 'merchants/:merchant_id/coupons' => 'coupons#create'
