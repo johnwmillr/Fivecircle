@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   put 'users/:user_id/media/:id' => 'media#update'
   delete 'users/:user_id/media/:id' => 'media#destroy'
   
-  post 'users/:user_id/checkin' => 'user#update_chekin', :as =>:update_user_checkin
+  post 'users/:user_id/checkin' => 'users#update_chekin', :as =>:update_user_checkin
   
   # root :to => redirect('/users')
 
