@@ -38,18 +38,24 @@ class UsersController < ApplicationController
     # Initialize the Geocoding API
     gmaps = GoogleMapsService::Client.new(key: api_key)
 
+    # Reverse geocode the coordinates into a street address
     results = gmaps.reverse_geocode(latlong)
 
-    # Store the first result in the database
+    # Just take the first result
+    address = results[0][:formatted_address]
+
+    # Store the address in the database
     if current_user
-      current_user.update(lastAddress: results[0][:formatted_address])
+      current_user.update(lastAddress: address)
     end
     
+    # Print results to the server
     results.each do |r|
         puts '-----------'  
         puts r[:formatted_address].inspect
     end
 
+    return address
   end
 
 

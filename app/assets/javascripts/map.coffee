@@ -3,6 +3,10 @@ jQuery ->
     map = null
     marker = null
     zoom_and_pan_were_set = false
+
+    if !navigator.geolocation
+        alert "Geolocation is not supported by your browser :("
+
     window.initMap = ->
         if $('#map').size() > 0            
             #Defining settings for map
@@ -42,10 +46,21 @@ jQuery ->
             data: {coordinates: {latitude: lat, longitude: lon}}
             success: (data, textStatus, jqXHR) ->
                 $('body').append "Successful AJAX call."            
+
+    geo_error = () ->
+        alert "Sorry, no position available. :("
+    
+    geo_options =
+        enableHighAccuracy: true # Default = false
+        maximumAge: 0 # Default = 0
+        timeout: Infinity # Default = Infinity
         
     $(document).ready ->        
         if zoom_and_pan_were_set != true
-            navigator.geolocation.getCurrentPosition(testAjax)
+            navigator.geolocation.getCurrentPosition(testAjax, geo_error, geo_options)
 
-        id = navigator.geolocation.watchPosition(updateMap)
+        id = navigator.geolocation.watchPosition(updateMap, geo_error, geo_options)
+
+        # We should have something like this that stops the tracking when user logs out:
+        # navigator.geolocation.clearWatch(watchID);
 
