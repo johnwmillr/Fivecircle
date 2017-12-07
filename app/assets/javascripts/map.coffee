@@ -2,7 +2,7 @@ jQuery ->
     markersArray = []
     map = null
     marker = null
-
+    zoom_and_pan_were_set = false
     window.initMap = ->
         if $('#map').size() > 0            
             #Defining settings for map
@@ -17,22 +17,21 @@ jQuery ->
                 mapTypeControlOptions:
                     mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
             
-            #Creating The map
-            map = new google.maps.Map(document.getElementById("map"),mapOptions)
-            
+            #Creating the map and marker
+            map = new google.maps.Map(document.getElementById("map"),mapOptions)            
             marker = new google.maps.Marker
                 map: map
-                # position: new google.maps.LatLng(lat,lon)
 
-    applyLocation = (location) ->
-        latitude = location.coords.latitude
-        longitude = location.coords.longitude
-        marker.setPosition(new google.maps.LatLng(latitude, longitude))
-        map.setCenter(new google.maps.LatLng(latitude, longitude))
-        map.setZoom(19)
+    updateMap = (location) ->    
+        coords = location.coords
+        # Readjusts the map center and zoom level the first time it runs
+        if zoom_and_pan_were_set != true
+            map.setCenter(new google.maps.LatLng(coords.latitude, coords.longitude))
+            map.setZoom(19)
+            zoom_and_pan_were_set = true
 
-
-    $(document).ready ->
-        setInterval () ->            
-            navigator.geolocation.getCurrentPosition applyLocation
-        , 1000
+        # Moves the marker to user's current location        
+        marker.setPosition(new google.maps.LatLng(coords.latitude, coords.longitude))
+                
+    $(document).ready ->                    
+        id = navigator.geolocation.watchPosition(updateMap)
