@@ -6,9 +6,8 @@
 .card
   .card-block
     #map
-    #lat
-    -#lng
-    = link_to "Check-in", user_checkin_path(@user.id)
+#checkin
+  = button_to "Check-in", user_checkin_path(@user.id), :method => :post
 
 %h1 User #{@user.id} Media
 %table{:border => 1}

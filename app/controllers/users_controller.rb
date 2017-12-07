@@ -19,6 +19,9 @@ class UsersController < ApplicationController
     
     def checkin
         @geodata = params['coordinates']
+        puts "*******************!!!!!!!!!!!!!!!!"
+        puts @geodata
+        puts params.inspect
         lat = @geodata["latitude"].to_f
         lon = @geodata["longitude"].to_f
 
