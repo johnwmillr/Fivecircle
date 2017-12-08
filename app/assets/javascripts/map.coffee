@@ -37,21 +37,6 @@ jQuery ->
         # Moves the marker to user's current location        
         marker.setPosition(new google.maps.LatLng(coords.latitude, coords.longitude))
 
-    # setup = () ->
-            
-        # $('<div id="Available coupons"></div>').
-        #     hide().
-        #     appendTo($('body'))
-
-            
-    
-    # getCoupon = () ->
-    #     $.ajax 
-    #         type: 'GET'
-    #         url: $(this).attr('href')
-    #         timeout: 5000
-    #         success: #TODO,
-    #         error:  alert('Error!')
 
     testAjax = (location) ->
         console.log("ajax here AHMED!!!!!!")
@@ -63,8 +48,7 @@ jQuery ->
             # url: $(this).attr('href')
             type: "POST"
             dataType: "text"
-            # data: {coordinates: {latitude: lat, longitude: lon}}
-            data: {test: "hi"}
+            data: {coordinates: {latitude: lat, longitude: lon}}
             success: (data, textStatus, jqXHR) ->
                 $('body').append "Successful AJAX call."      
               
@@ -72,7 +56,11 @@ jQuery ->
         console.log("JOHN!!!")
               
     on_error = () ->
-        alert "ERROR!!"
+        alert "Geolocation error!!"
+
+    getLocation = () ->
+        navigator.geolocation.getCurrentPosition(testAjax)
+        return false
               
     $(document).ready ->
 
@@ -81,6 +69,15 @@ jQuery ->
 
         id = navigator.geolocation.watchPosition(updateMap,on_error)
         
-        $(document).on "click", "#checkin", -> 
-            # navigator.geolocation.clearWatch(id)
-            navigator.geolocation.getCurrentPosition(testAjax())
+        # $(document).on "click", "#checkin", -> 
+        #     # navigator.geolocation.clearWatch(id)
+        #     # navigator.geolocation.getCurrentPosition(testAjax())
+        #     getLocation
+
+        $(document).ready ->
+            setInterval () ->            
+                navigator.geolocation.getCurrentPosition(updateMap, on_error)
+            , 1000
+
+
+
