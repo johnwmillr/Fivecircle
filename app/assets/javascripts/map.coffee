@@ -34,7 +34,7 @@ jQuery ->
         marker.setPosition(new google.maps.LatLng(coords.latitude, coords.longitude))
 
     geo_error = () ->
-        alert "Geolocation error!"
+        # alert "Geolocation error!"
 
     geo_options =
         enableHighAccuracy: true
