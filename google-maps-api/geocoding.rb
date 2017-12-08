@@ -1,11 +1,19 @@
 require 'google_maps_service'
 
-# Load the API key
-file_lines = []
-File.open('../secrets.txt','r') do |f|
-    f.each_line {|line| file_lines = file_lines + [line.split(':')[1].strip()]}
+def on_heroku?
+  ENV['ON_HEROKU']
 end
-api_key = file_lines[0]
+
+# Load the API key
+if on_heroku?
+    api_key = ENV['GOOGLE_MAPS_KEY']
+else
+    file_lines = []
+    File.open('../secrets.txt','r') do |f|
+        f.each_line {|line| file_lines = file_lines + [line.split(':')[1].strip()]}
+    end
+    api_key = file_lines[0]
+end
 
 # Initialize the Geocoding API
 gmaps = GoogleMapsService::Client.new(key: api_key)
@@ -20,7 +28,7 @@ results = gmaps.reverse_geocode(latlong)
 puts '********************'
 puts 'Lat/Long: ' + latlong.inspect
 results.each do |r|
-    puts '-----------'  
+    puts '-----------'
     puts r[:formatted_address].inspect
 end
 

@@ -24,16 +24,24 @@ class UsersController < ApplicationController
     puts "Coord: " + [lat,lon].inspect
 
     # Convert the lat/lon coordinates into an address
-    reverse_geocode([lat,lon])
+    puts("Address: " + reverse_geocode([lat,lon]).inspect)
+  end
+
+  def on_heroku?
+      ENV['ON_HEROKU']
   end
 
   def reverse_geocode(latlong)
     # Load the API key
-    file_lines = []
-    File.open('../secrets.txt','r') do |f|
-        f.each_line {|line| file_lines = file_lines + [line.split(':')[1].strip()]}
+    if on_heroku? or 1
+        api_key = ENV['GOOGLE_MAPS_KEY']
+    else
+        file_lines = []
+        File.open('../secrets.txt','r') do |f|
+            f.each_line {|line| file_lines = file_lines + [line.split(':')[1].strip()]}
+        end
+        api_key = file_lines[0]
     end
-    api_key = file_lines[0]
 
     # Initialize the Geocoding API
     gmaps = GoogleMapsService::Client.new(key: api_key)
@@ -47,12 +55,6 @@ class UsersController < ApplicationController
     # Store the address in the database
     if current_user
       current_user.update(lastAddress: address)
-    end
-    
-    # Print results to the server
-    results.each do |r|
-        puts '-----------'  
-        puts r[:formatted_address].inspect
     end
 
     return address
