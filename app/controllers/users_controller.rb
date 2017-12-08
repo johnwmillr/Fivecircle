@@ -32,8 +32,8 @@ class UsersController < ApplicationController
       end
     end
     
-    def reverse_geocode(latlong)
-      puts("REVERSE GEOCODE")
+  def reverse_geocode(latlong)
+    puts("REVERSE GEOCODE")
     latlong = [41.660214,-91.5343671]  # Pancheros
     # Load the API key
     if on_heroku?
@@ -44,6 +44,7 @@ class UsersController < ApplicationController
         f.each_line {|line| file_lines = file_lines + [line.split(':')[1].strip()]}
         api_key = file_lines[0]
       end
+    end  
       
     # Initialize the Geocoding API
     gmaps = GoogleMapsService::Client.new(key: api_key)
