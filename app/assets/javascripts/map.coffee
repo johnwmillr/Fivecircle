@@ -33,13 +33,18 @@ jQuery ->
         # Moves the marker to user's current location
         marker.setPosition(new google.maps.LatLng(coords.latitude, coords.longitude))
 
-    on_error = () ->
-        alert "Geolocation error!!"
+    geo_error = () ->
+        alert "Geolocation error!"
+
+    geo_options =
+        enableHighAccuracy: true
+        timeout: Infinity
+        maximumAge: 0
 
     $(document).ready ->
         # if zoom_and_pan_were_set != true
             # navigator.geolocation.getCurrentPosition(testAjax,on_error)
 
         setInterval () ->
-            navigator.geolocation.getCurrentPosition(updateMap, on_error)
+            navigator.geolocation.getCurrentPosition(updateMap, geo_error, geo_options)
         , 1000
