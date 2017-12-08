@@ -18,9 +18,14 @@ def create
   
   Aws.config.update({
     region: 'us-east-1',
-    credentials: Aws::Credentials.new('AKIAJ3B3T5ZGRZVC3GMA', 'FJnICO6qUc6mRyoKZW5BQNYhwRVezTy6nfhUhCc+')
+    credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
   })
   
+  # Set these environment vars instead:
+  # 
+  # heroku config:set AWS_ACCESS_KEY_ID='xxx'
+  # heroku config:set AWS_SECRET_ACCESS_KEY='xxx'
+  # heroku config:set AWS_REGION='us-east-1'
   
   file_name = params[:medium][:image].original_filename
   upload_file = params[:medium][:image].path
