@@ -55,7 +55,7 @@ RSpec.configure do |config|
   config.include ControllerHelpers, type: :controller
   config.extend ControllerMacros, type: :controller
   
-  config.include OmniAuthTestHelper, type: :controller
+  config.include OmniAuthTestHelper
   
   Warden.test_mode!
 
