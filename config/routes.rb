@@ -20,10 +20,8 @@ Rails.application.routes.draw do
   # get 'users/:id' => 'users/actions#show', :as => :user
   get 'users/:user_id/media' => 'media#index', :as => :user_media
   post 'users/:user_id/media' => 'media#create'
-  get 'users/:user_id/media/new' => 'media#new', :as =>:new_user_medium_get
-  
-  post 'users/:user_id/media/new' => 'media#new', :as =>:new_user_medium
-  
+  get 'users/:user_id/media/new' => 'media#new', :as =>:new_user_medium
+  post 'users/:user_id/media/new' => 'media#create', :as =>:create_user_medium
   get 'users/:user_id/media/:id/edit' => 'media#edit', :as => :edit_user_medium
   get 'users/:user_id/media/:id' => 'media#show', :as => :user_medium
   patch 'users/:user_id/media/:id' => 'media#update'
