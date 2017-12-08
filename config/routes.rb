@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   patch 'merchants/:merchant_id/coupons/:id' => 'coupons#update'
   put 'merchants/:merchant_id/coupons/:id' => 'coupons#update'
   delete 'merchants/:merchant_id/coupons/:id' => 'coupons#destroy'
+
+  post 'users/:user_id/media/save_location' => 'users#save_location'
   
   # root :to => redirect('/users')
 

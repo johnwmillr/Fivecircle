@@ -3,6 +3,13 @@ jQuery ->
     map = null
     marker = null
     zoom_and_pan_were_set = false
+
+    if !navigator.geolocation
+        alert "Geolocation is not supported by your browser :("
+    coords =
+        latitude: 41.6608501
+        longitude: -91.5305475
+
     window.initMap = ->
         if $('#map').size() > 0
             #Defining settings for map
@@ -33,6 +40,19 @@ jQuery ->
         # Moves the marker to user's current location
         marker.setPosition(new google.maps.LatLng(coords.latitude, coords.longitude))
 
+    fileUploadAJax = (location) ->
+        console.log(coords)
+        lat = coords.latitude
+        lon = coords.longitude
+        console.log(lat)
+        $.ajax 'save_location',
+            # url: $(this).attr('href')
+            type: "POST"
+            dataType: "text"
+            data: {coordinates: {latitude: lat, longitude: lon}}
+            success: (data, textStatus, jqXHR) ->
+                $('body').append "AJAX."         
+
     geo_error = () ->
         # alert "Geolocation error!"
 
@@ -42,9 +62,11 @@ jQuery ->
         maximumAge: 0
 
     $(document).ready ->
-        # if zoom_and_pan_were_set != true
-            # navigator.geolocation.getCurrentPosition(testAjax,on_error)
+        $(document).on "click", "#medium_image", ->
+            fileUploadAJax()
+
 
         setInterval () ->
             navigator.geolocation.getCurrentPosition(updateMap, geo_error, geo_options)
         , 1000
+
