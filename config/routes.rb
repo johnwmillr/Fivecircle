@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   put 'users/:user_id/media/:id' => 'media#update'
   delete 'users/:user_id/media/:id' => 'media#destroy'
 
+  post 'users/checkin' => 'users#checkin'
+
   # get 'merchants/:id' => 'merchants/actions#show', :as => :merchant
   get 'merchants/:merchant_id/coupons' => 'coupons#index', :as => :merchant_coupons
   post 'merchants/:merchant_id/coupons' => 'coupons#create'
@@ -52,6 +54,8 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+
+  resources :users
 
   # Example resource route with options:
   #   resources :products do

@@ -3,7 +3,6 @@
   %head
     %title Fivecircle
     = stylesheet_link_tag 'application', 'media' => 'all', 'data-turbolinks-track' => true
-   
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
@@ -31,4 +30,3 @@
       = yield
       
   %script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqnz3DH-SPMzN2934Ptf-2bpl36vdfJcw&callback=initMap" async defer)
-
