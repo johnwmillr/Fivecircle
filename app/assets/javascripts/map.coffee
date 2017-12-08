@@ -6,7 +6,10 @@ jQuery ->
 
     if !navigator.geolocation
         alert "Geolocation is not supported by your browser :("
-
+    coords =
+        latitude: 41.6608501
+        longitude: -91.5305475
+        
     window.initMap = ->
         if $('#map').size() > 0            
             #Defining settings for map
@@ -36,31 +39,38 @@ jQuery ->
 
         # Moves the marker to user's current location        
         marker.setPosition(new google.maps.LatLng(coords.latitude, coords.longitude))
-
-    testAjax = (location) ->
-        lat = location.coords.latitude
-        lon = location.coords.longitude
-        $.ajax 'checkin',
-            type: "POST"
-            # dataType: "text"
-            data: {coordinates: {latitude: lat, longitude: lon}}
-            success: (data, textStatus, jqXHR) ->
-                $('body').append "Successful AJAX call."            
-
-    geo_error = () ->
-        alert "Sorry, no position available. :("
-    
+          
     geo_options =
         enableHighAccuracy: true # Default = false
         maximumAge: 0 # Default = 0
         timeout: Infinity # Default = Infinity
         
-    $(document).ready ->        
-        if zoom_and_pan_were_set != true
-            navigator.geolocation.getCurrentPosition(testAjax, geo_error, geo_options)
-
-        id = navigator.geolocation.watchPosition(updateMap, geo_error, geo_options)
+    testAjax = (location) ->
+        console.log("ajax here AHMED!!!!!!")
+        console.log(coords)
+        lat = coords.latitude
+        lon = coords.longitude
+        console.log(lat)
+        $.ajax ':user_id/checkin',
+            # url: $(this).attr('href')
+            type: "POST"
+            dataType: "text"
+            data: {coordinates: {latitude: lat, longitude: lon}}
+            success: (data, textStatus, jqXHR) ->
+                $('body').append "Successful AJAX call."                     
+      
+    $(document).ready ->
+        
+        $(document).on "click", "#checkin", -> 
+            # navigator.geolocation.clearWatch(id)
+            # navigator.geolocation.getCurrentPosition(testAjax())
+            # getLocation
+            testAjax();
+            return false;
+          
+        setInterval () ->            
+            navigator.geolocation.getCurrentPosition(updateMap)
+        , 1000
 
         # We should have something like this that stops the tracking when user logs out:
-        # navigator.geolocation.clearWatch(watchID);
-
+        # navigator.geolocation.clearWatch(watchID);                       
