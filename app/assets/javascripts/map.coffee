@@ -52,11 +52,11 @@ jQuery ->
             success: (data, textStatus, jqXHR) ->
                 $('body').append "Successful AJAX call."      
               
-    printAName = () ->
-        console.log("JOHN!!!")
+    # printAName = () ->
+    #     console.log("JOHN!!!")
               
-    on_error = () ->
-        alert "Geolocation error!!"
+    # on_error = () ->
+    #     alert "Geolocation error!!"
 
     getLocation = () ->
         navigator.geolocation.getCurrentPosition(testAjax)
@@ -65,18 +65,20 @@ jQuery ->
     $(document).ready ->
 
         if zoom_and_pan_were_set != true
-            navigator.geolocation.getCurrentPosition(testAjax,on_error)
+            navigator.geolocation.getCurrentPosition(testAjax)
 
-        id = navigator.geolocation.watchPosition(updateMap,on_error)
+        # id = navigator.geolocation.watchPosition(updateMap,on_error)
         
-        # $(document).on "click", "#checkin", -> 
-        #     # navigator.geolocation.clearWatch(id)
-        #     # navigator.geolocation.getCurrentPosition(testAjax())
-        #     getLocation
+        $(document).on "click", "#checkin", -> 
+            # navigator.geolocation.clearWatch(id)
+            # navigator.geolocation.getCurrentPosition(testAjax())
+            # getLocation
+            testAjax();
+            return false;
 
         $(document).ready ->
             setInterval () ->            
-                navigator.geolocation.getCurrentPosition(updateMap, on_error)
+                navigator.geolocation.getCurrentPosition(updateMap)
             , 1000
 
 
