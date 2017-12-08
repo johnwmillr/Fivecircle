@@ -20,4 +20,21 @@ def show
   end
 end
 
+
+def create
+  @medium = Medium.new(medium_params)
+  
+  if @medium.save
+      redirect_to @medium, notice: 'Medium was successfully created.'
+  else
+      render action: 'new'
+  end
+end
+
+private
+
+def medium_params
+    params.require(:medium).permit(:image, :name)
+end
+
 end
