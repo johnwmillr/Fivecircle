@@ -93,5 +93,6 @@ Rails.application.configure do
     }
   }
   
-  # Paperclip.options[:command_path] = 'C:\ImageMagicks'
+  Paperclip.options[:command_path] = '/usr/bin'
+  # Paperclip.options.merge!(:command_path => "/usr/bin")
 end
