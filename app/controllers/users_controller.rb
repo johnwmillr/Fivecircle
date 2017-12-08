@@ -19,9 +19,7 @@ class UsersController < ApplicationController
     
     def checkin
         @geodata = params['coordinates']
-        puts "*******************!!!!!!!!!!!!!!!!"
-        puts @geodata
-        puts params.inspect
+
         lat = @geodata["latitude"].to_f
         lon = @geodata["longitude"].to_f
 
@@ -35,7 +33,20 @@ class UsersController < ApplicationController
 
         # Convert the lat/lon coordinates into an address
         # This method is on John's explore-google-maps branch               
-        # reverse_geocode([lat,lon])
+        # user_address = reverse_geocode([lat,lon])
+        user_address = "Seamans Center"
+        match_merchant = Merchant.where("address == '#{user_address}'")
+        puts match_merchant.inspect
+        puts (match_merchant.any?).inspect
+        if match_merchant.any?
+            #match_merchant_id = match_merchant[0][:id]
+            coupons_avail = match_merchant[0].coupons
+            puts coupons_avail
+        else
+            flash[:warning] = "You are not in a registered place. Are you in a corn field?"
+            show()
+        end
+        puts "HEYYY"
         
         # result = Pipe.where{ST_Distance(
         #   ST_Transform(location,26986),

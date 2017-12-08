@@ -64,8 +64,8 @@ jQuery ->
               
     $(document).ready ->
 
-        if zoom_and_pan_were_set != true
-            navigator.geolocation.getCurrentPosition(testAjax)
+        # if zoom_and_pan_were_set != true
+        #     navigator.geolocation.getCurrentPosition(testAjax)
 
         # id = navigator.geolocation.watchPosition(updateMap,on_error)
         
