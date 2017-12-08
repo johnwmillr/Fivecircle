@@ -10,4 +10,4 @@ Paperclip::Attachment.default_options[:s3_credentials] = {
 Paperclip::Attachment.default_options[:url] = ":s3_domain_url"
 Paperclip::Attachment.default_options[:path] = "/:class/:attachment/:id_partition/:style/:hash.:extension"
 
-# Paperclip.options[:command_path] = 'C:\ImageMagicks'
+Paperclip.options[:command_path] = 'C:\ImageMagicks'
