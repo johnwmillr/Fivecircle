@@ -28,12 +28,16 @@ class UsersController < ApplicationController
   end
 
   def on_heroku?
-      ENV['ON_HEROKU']
+    # Checks if app is running on Heroku
+    # (used for Google Maps environment variables for API key)
+    ENV['ON_HEROKU']
   end
 
   def reverse_geocode(latlong)
+    puts("REVERSE GEOCODE")
+    latlong = [41.660214,-91.5343671]  # Pancheros
     # Load the API key
-    if on_heroku? or 1
+    if on_heroku?
         api_key = ENV['GOOGLE_MAPS_KEY']
     else
         file_lines = []
