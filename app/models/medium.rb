@@ -8,5 +8,6 @@ class Medium < ActiveRecord::Base
     }
     
     # Validate the attached image is image/jpg, image/png, etc
-    validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+    # validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+    do_not_validate_attachment_file_type :image
 end

@@ -38,7 +38,7 @@ gem 'hirb'
 # uploads
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
-# installed via heroku buildpack
+# already installed via heroku buildpack
 # gem 'rmagick'
 
 # Use ActiveModel has_secure_password

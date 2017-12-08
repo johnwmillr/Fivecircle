@@ -76,8 +76,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  
-   # file uploads
+end
+
+# file uploads
   config.paperclip_defaults = {
     storage: :s3,
     s3_credentials: {
@@ -95,4 +96,3 @@ Rails.application.configure do
   
   Paperclip.options[:command_path] = '/usr/bin'
   # Paperclip.options.merge!(:command_path => "/usr/bin")
-end
