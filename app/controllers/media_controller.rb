@@ -25,7 +25,7 @@ def create
   @medium = Medium.new(medium_params)
   
   if @medium.save
-      redirect_to @medium, notice: 'Medium was successfully created.'
+      redirect_to user_path(current_user[:id]), notice: 'Medium was successfully created.'
   else
       render action: 'new'
   end

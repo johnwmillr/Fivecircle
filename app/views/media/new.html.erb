@@ -4,10 +4,6 @@
 
 <%= form_for(:medium, multipart: true) do |f| %>
   <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
     <%= f.label :image %>
     <%= f.file_field :image %>
   </div>
