@@ -34,32 +34,33 @@ class UsersController < ApplicationController
     
     def reverse_geocode(latlong)
       puts("REVERSE GEOCODE")
-    latlong = [41.660214,-91.5343671]  # Pancheros
-    # Load the API key
-    if on_heroku?
-      api_key = ENV['GOOGLE_MAPS_KEY']
-    else
-      file_lines = []
-      File.open('../secrets.txt','r') do |f|
-        f.each_line {|line| file_lines = file_lines + [line.split(':')[1].strip()]}
-        api_key = file_lines[0]
+      latlong = [41.660214,-91.5343671]  # Pancheros
+      # Load the API key
+      if on_heroku?
+        api_key = ENV['GOOGLE_MAPS_KEY']
+      else
+        file_lines = []
+        File.open('../secrets.txt','r') do |f|
+          f.each_line {|line| file_lines = file_lines + [line.split(':')[1].strip()]}
+          api_key = file_lines[0]
+        end
       end
       
-    # Initialize the Geocoding API
-    gmaps = GoogleMapsService::Client.new(key: api_key)
+      # Initialize the Geocoding API
+      gmaps = GoogleMapsService::Client.new(key: api_key)
 
-    # Reverse geocode the coordinates into a street address
-    results = gmaps.reverse_geocode(latlong)
+      # Reverse geocode the coordinates into a street address
+      results = gmaps.reverse_geocode(latlong)
 
-    # Just take the first result
-    address = results[0][:formatted_address]
+      # Just take the first result
+      address = results[0][:formatted_address]
 
-    # Store the address in the database
-    if current_user
-      current_user.update(lastAddress: address)
+      # Store the address in the database
+      if current_user
+        current_user.update(lastAddress: address)
+      end
+      return address
     end
-    return address
-  end
 
 
   def checkin
