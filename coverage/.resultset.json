@@ -1055,6 +1055,34 @@
         1,
         null
       ],
+      "/home/ubuntu/workspace/Fivecircle/spec/requests/user_sessions_request_spec.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        2,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        0,
+        null,
+        null
+      ],
       "/home/ubuntu/workspace/Fivecircle/app/models/user/parameter_sanitizer.rb": [
         1,
         1,
@@ -1065,6 +1093,6 @@
         null
       ]
     },
-    "timestamp": 1512775736
+    "timestamp": 1512776801
   }
 }
