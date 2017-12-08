@@ -45,6 +45,8 @@ def create
   mp = medium_params
   mp[:user_id] = current_user[:id]
   mp[:photoUrl] = obj.public_url
+  mp[:latitude] = current_user[:latitude]
+  mp[:longitude] = current_user[:longitude]  
   
   @medium = Medium.new(mp)
   
