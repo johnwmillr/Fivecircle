@@ -41,6 +41,9 @@ def create
   p "public url #{obj.public_url}"
   
   
+  medium_params[:user_id] = current_user[:id]
+  medium_params[:photoUrl] = obj.public_url
+  
   @medium = Medium.new(medium_params)
   
   if @medium.save
