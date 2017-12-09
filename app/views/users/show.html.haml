@@ -25,5 +25,25 @@
             %td= medium.created_at
             %td= "(#{medium.latitude}, #{medium.longitude})"          
             %td= link_to "View post", user_medium_path(@user.id,medium.id)
+            
+%h1 User #{@user.id} Coupons
+%table{:border => 1}
+  #coupon
+    %thead
+      %th User ID
+      %th Coupon Name
+      %th Description
+      %th Use Coupon
+    %tbody
+      - @current_user.saved_coupons.each do |coupon|
+        - @coupons.each do |coupon_lookup|
+          - if coupon_lookup.id == coupon.coupon_id
+            - name = coupon_lookup.couponName
+            - description = coupon_lookup.description
+          %tr     
+            %td= @user.id   
+            %td= name
+            %td=   description    
+            %td= link_to "Use", root_path
   
 = link_to "Add new post", new_user_medium_path(@user.id)

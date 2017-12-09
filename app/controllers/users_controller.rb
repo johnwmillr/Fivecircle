@@ -104,15 +104,34 @@ class UsersController < ApplicationController
   end
   
   def getCoupons
-    puts "$$$$$$$$$$$$$$$$$$$$$$$$$444"
+
     puts current_user.lastAddress
     user_address = "115 Iowa Ave, Iowa City, IA 52240"
     match_merchant = Merchant.where("address == '#{current_user.lastAddress}'")
     match_merchant = Merchant.where("address == '#{user_address}'")
-    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%5"
+
     puts match_merchant.inspect
     @coupons_avail = match_merchant[0].coupons
     
+  end
+  
+  def selCoupons
+    if params[:coupon_sel] == nil
+      flash[:notice] = 'No movies selected'
+    else
+      params[:coupon_sel].keys.each {|c| puts "!!!!"
+      puts c 
+      saveCoupForUser(c)}
+      flash[:notice] = 'Coupons add successfully'
+      
+    end
+    redirect_to user_path(current_user.id)
+  end
+  
+  def saveCoupForUser(coupon_to_save)
+    puts "saved!!!!!!!!!!!!!!!"
+    @current_user.saved_coupons.build(:id => 1,:validation => true, :created_at => Coupon.find(coupon_to_save)[:created_at],:updated_at => Coupon.find(coupon_to_save)[:updated_at], :coupon_id => coupon_to_save)
+    puts @current_user.saved_coupons.inspect
   end
 
 end    

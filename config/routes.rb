@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   
   post 'users/:user_id/checkin' => 'users#checkin', :as =>:user_checkin
   get 'users/:user_id/avail_coupons' => 'users#getCoupons', :as => :get_coupons
+  post 'users/:user_id/sel_coupons' => 'users#selCoupons', :as => :sel_coupons
   # root :to => redirect('/users')
 
   # You can have the root of your site routed with "root"
