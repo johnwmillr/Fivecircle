@@ -1,11 +1,24 @@
 -# in app/views/users/show.html.haml
 -# I realize using @user.id is kind of a kludge. We should use a @current_user variable
-
+    
 %h1 User #{@user.id} Profile
 %p
 .card
   .card-block
     #map
+
+.hidden
+  %table{:border => 1,:id => 'pins'}
+    %tbody
+      -# show images from all users for now
+      - @media.each do |medium|
+        %tr
+          %td= @user.id
+          %td= medium.created_at
+          %td= medium.photoUrl
+          %td= medium.latitude
+          %td= medium.longitude  
+          %td= user_medium_path(@user.id,medium.id)
 
 %h1 User #{@user.id} Media
 
