@@ -2,22 +2,24 @@
 
 <h1 style="background-color:yellow;">New Media</h1>
 
+<h1 style="background-color:green;">*Remember, all media posts are completely public to Fivecircle users*</h1>
+
 <%= form_for(:medium, multipart: true) do |f| %>
  <div align="center">
   <div class="field">
     <%= f.label :image %>
     <%= f.file_field :image%>
   </div>
-  
+
   <div class="field">
     <%= f.label :caption %>
 
     <p><%= f.text_area :note, cols: "30", rows: "10" %></p>
-  
+
   <div class="actions">
-    <%= f.submit 'Upload image' %>
+    <%= f.submit 'Upload media' %>
 
   </div>
   </br>
- </div>  
+ </div>
 <% end %>
