@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   delete 'merchants/:merchant_id/coupons/:id' => 'coupons#destroy'
   
   post 'users/:user_id/checkin' => 'users#checkin', :as =>:user_checkin
-  
+  get 'users/:user_id/avail_coupons' => 'users#getCoupons', :as => :get_coupons
   # root :to => redirect('/users')
 
   # You can have the root of your site routed with "root"

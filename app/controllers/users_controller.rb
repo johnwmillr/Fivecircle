@@ -34,9 +34,8 @@ class UsersController < ApplicationController
     
     def reverse_geocode(latlong)
       puts("REVERSE GEOCODE")
-      latlong = [41.660214,-91.5343671]  # Pancheros
       # Load the API key
-      if on_heroku?
+      if on_heroku? or 1
         api_key = ENV['GOOGLE_MAPS_KEY']
       else
         file_lines = []
@@ -74,27 +73,46 @@ class UsersController < ApplicationController
       current_user.update(latitude: lat, longitude: lon)
     end        
 
-    puts '********************'
+    puts '*************************************************'
     puts "Coord: " + [lat,lon].inspect
 
     # Convert the lat/lon coordinates into an address
     # This method is on John's explore-google-maps branch               
-    # user_address = reverse_geocode([lat,lon])
     user_address = "115 Iowa Ave, Iowa City, IA 52240"
+    #user_address = reverse_geocode([lat,lon])
+    #puts "addr " + user_address.inspect
     match_merchant = Merchant.where("address == '#{user_address}'")
-    puts match_merchant.inspect
-    puts (match_merchant.any?).inspect
+    #puts match_merchant.inspect
+    #puts (match_merchant.any?).inspect
+    puts '####################################################'
     if match_merchant.any?
       #match_merchant_id = match_merchant[0][:id]
-      coupons_avail = match_merchant[0].coupons
-      puts coupons_avail
+      
+      # if coupons_avail.length < 1
+      #   flash[:warning] = "No coupons were found at this location"
+      #   render :text => "#{current_user[:id]}"
+      # else
+      render :text => "#{current_user[:id]}/avail_coupons"
+      # end
+      
     else
       flash[:warning] = "You are not in a registered place. Are you in a corn field?"
-
       render :text => "#{current_user[:id]}"
 
 
     end                    
+  end
+  
+  def getCoupons
+    puts "$$$$$$$$$$$$$$$$$$$$$$$$$444"
+    puts current_user.lastAddress
+    user_address = "115 Iowa Ave, Iowa City, IA 52240"
+    match_merchant = Merchant.where("address == '#{current_user.lastAddress}'")
+    match_merchant = Merchant.where("address == '#{user_address}'")
+    puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%5"
+    puts match_merchant.inspect
+    @coupons_avail = match_merchant[0].coupons
+    
   end
 
 end    
