@@ -29,7 +29,7 @@
 //   navigator.geolocation.getCurrentPosition(success, error);
 // }
 
-window.onload = function() {
+$(document).ready(function(){
     var table = document.getElementById("pins");
     
     for (var i = 0, row; row = table.rows[i]; i++) {
@@ -72,4 +72,4 @@ window.onload = function() {
         
         // marker.setMap(window.map_export);
     }
-};
+});
