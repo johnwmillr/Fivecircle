@@ -1,11 +1,6 @@
 -# in app/views/coupons/show.html.haml
-
-%h2 Coupon created on #{@coupon.created_at} by Merchant ##{@coupon.merchant_id}
-
--# Still need to add a static map to this view
-
-%ul#details
-  %li
-    = "Name: #{@coupon.couponName}"
-  %li
-    = "Description: #{@coupon.description}"
+%header
+  %h1= "Merchant #{@coupon.merchant_id}, coupon \##{@coupon.id}"
+  %h2= "#{@coupon.couponName}"
+  %h2= "Description:"
+  %h3= "#{@coupon.description}"

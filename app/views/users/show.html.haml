@@ -1,7 +1,7 @@
 -# in app/views/users/show.html.haml
--# I realize using @user.id is kind of a kludge. We should use a @current_user variable
 
-%h1 User #{@user.id} Profile (it should show current location)
+%h1.bg-info #{@user.username}'s Profile
+
 %p
 .card
   .card-block
@@ -9,22 +9,42 @@
 #checkin
   = button_to "Check-in", user_checkin_path(@user.id), :method => :post
 
-%h1 User #{@user.id} Media
-%table{:border => 1}
+.hidden
+  %table{:border => 1,:id => 'pins'}
+    %tbody
+      -# show images from all users for now
+      - @media.each do |medium|
+        %tr
+          %td= @user.id
+          %td= medium.created_at
+          %td= medium.photoUrl
+          %td= medium.latitude
+          %td= medium.longitude  
+          %td= user_medium_path(@user.id,medium.id)
+
+
+%h1.bg-info #{@user.username}' Media
+= link_to "Add new post", new_user_medium_path(@user.id)
+
+%table{:border => 4, :align => "center", :width => "80%", :border-collapse => "collapse", :border => "3px solid purple"}
+
   #media
-    %thead
-      %th User ID
-      %th Date
-      %th Location
-      %th View Post
+
+    %thead.bg-success.bold
+      %th User Name
+      %th Post #
+      %th Date     
+      %th Note 
+      %th View post
     %tbody
       - @media.each do |medium|
         - if medium.user_id == @user.id          
           %tr     
-            %td= @user.id   
+            %td= @user.username
+            %td= medium.id
             %td= medium.created_at
-            %td= "(#{medium.latitude}, #{medium.longitude})"          
-            %td= link_to "View post", user_medium_path(@user.id,medium.id)
+            %td= medium.note
+            %td= link_to "View post!", user_medium_path(@user.id,medium.id)            
 
 = link_to "Add new post", new_user_medium_path(@user.id)
 
@@ -47,3 +67,5 @@
             %td= name
             %td=   description    
             %td= link_to "Use", root_path
+
+%script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqnz3DH-SPMzN2934Ptf-2bpl36vdfJcw&callback=initMap" async defer)

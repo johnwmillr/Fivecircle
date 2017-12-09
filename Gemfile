@@ -38,6 +38,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # hirb gem provides a very pleasant way to print your tables columns
 gem 'hirb'
 
+# file uploads
+gem 'aws-sdk', '~> 2.3'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

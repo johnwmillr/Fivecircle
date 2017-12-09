@@ -1,11 +1,8 @@
 -# in app/views/merchants/show.html.haml
-
 %h1 Merchant Profile
--# TODO: Actually, don't we just want a static map for Merchants?
 %p
-.card
-  .card-block
-    #map
+  =image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@merchant.latitude},#{@merchant.longitude}&zoom=18&size=640x400&key=#{@GOOGLE_STATIC_KEY}",
+    :class => 'img-fluid img-rounded', :alt => "#{@merchant.id} on the map"
 
 %h1 Merchant Coupons
 

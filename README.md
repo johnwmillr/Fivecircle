@@ -1,5 +1,7 @@
 # Fivecircle #
-[Fivecircle](https://fivecircle.herokuapp.com) is a revolutionary new app for sharing geo-tagged memories with friends. [Sign up for an account](https://fivecircle.herokuapp.com/users/sign_up) and start dropping posts around town!
+[Fivecircle](https://fivecircle.herokuapp.com) is a revolutionary new app for sharing geo-tagged memories with friends.
+
+[Sign up for an account](https://fivecircle.herokuapp.com/users/sign_up) and start dropping posts around town!
 
 ## Setup ##
 #### Ruby version ####

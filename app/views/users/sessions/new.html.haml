@@ -1,4 +1,4 @@
-%h1 Log in 
+%h1.bg-info Log In 
 
 -unless @user ==nil
   -if @user.errors.any?
@@ -6,21 +6,25 @@
     -@user.errors.full_messages.each do |msg|
       %li #{msg}
 
-= form_tag user_session_path, :id=>'login_form' do
+= form_tag user_session_path, :id=>'login_form' , class:"center" do
 
   = label :user, :username, 'Five Circle ID'
-  = text_field :user, 'username'
-
-  = label :user, :password, 'Password'
+  = text_field :user, 'username' 
+  
+  = label :user, :password, 'Password' 
   = password_field :user, 'password'
   
   -if devise_mapping.rememberable?
     <br>
+    %br
     remember me
     =check_box_tag "remember_me", 1, :id => "remember_tag"
   <br>
-  = submit_tag 'Log in'
+  %br
+  = submit_tag 'Log In' , class:"btn btn-primary"
+  %br
   <br>
+  %br
   = render "users/shared/links"
 
 

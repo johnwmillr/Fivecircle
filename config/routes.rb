@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'users/:user_id/media' => 'media#index', :as => :user_media
   post 'users/:user_id/media' => 'media#create'
   get 'users/:user_id/media/new' => 'media#new', :as =>:new_user_medium
+  post 'users/:user_id/media/new' => 'media#create', :as =>:create_user_medium
   get 'users/:user_id/media/:id/edit' => 'media#edit', :as => :edit_user_medium
   get 'users/:user_id/media/:id' => 'media#show', :as => :user_medium
   patch 'users/:user_id/media/:id' => 'media#update'
@@ -38,6 +39,8 @@ Rails.application.routes.draw do
   patch 'merchants/:merchant_id/coupons/:id' => 'coupons#update'
   put 'merchants/:merchant_id/coupons/:id' => 'coupons#update'
   delete 'merchants/:merchant_id/coupons/:id' => 'coupons#destroy'
+
+  post 'users/:user_id/media/save_location' => 'users#save_location'
   
   post 'users/:user_id/checkin' => 'users#checkin', :as =>:user_checkin
   get 'users/:user_id/avail_coupons' => 'users#getCoupons', :as => :get_coupons
