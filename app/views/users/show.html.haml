@@ -25,7 +25,7 @@
 %table{:border => 4, :align => "center", :width => "80%", :border-collapse => "collapse", :border => "3px solid purple"}
   #media
     %thead.bg-success.bold
-      %th User ID
+      %th User Name
       %th Date      
       %th View photo
       %th Location
@@ -34,7 +34,7 @@
       - @media.each do |medium|
         - if medium.user_id == @user.id          
           %tr     
-            %td= @user.id
+            %td= @user.username
             %td= medium.created_at
             %td= link_to "View photo!", medium.photoUrl            
             %td= "(#{medium.latitude}, #{medium.longitude})"          
