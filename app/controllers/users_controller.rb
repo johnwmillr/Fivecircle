@@ -80,7 +80,7 @@ class UsersController < ApplicationController
     # Convert the lat/lon coordinates into an address
     # This method is on John's explore-google-maps branch               
     # user_address = reverse_geocode([lat,lon])
-    user_address = "Seamans Center"
+    user_address = "115 Iowa Ave, Iowa City, IA 52240"
     match_merchant = Merchant.where("address == '#{user_address}'")
     puts match_merchant.inspect
     puts (match_merchant.any?).inspect
@@ -90,8 +90,10 @@ class UsersController < ApplicationController
       puts coupons_avail
     else
       flash[:warning] = "You are not in a registered place. Are you in a corn field?"
-      redirect_to root_path
-      return
+
+      render :text => "#{current_user[:id]}"
+
+
     end                    
   end
 
