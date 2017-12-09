@@ -1,7 +1,7 @@
 $(document).ready(function(){
     // wait for the user's location to update on the map before adding the images
     setTimeout(function() {
-        // alert('GOOOOOO');
+        alert('GOOOOOO');
     
         var table = document.getElementById("pins");
         
@@ -29,7 +29,7 @@ $(document).ready(function(){
              }
            }
            
-           // alert('add marker at (' + latitude + ', ' + longitude + ') with icon ' + url + ' to map ' + window.map_export);
+           alert('add marker at (' + latitude + ', ' + longitude + ') with icon ' + url + ' to map ' + window.map_export);
            
             var pos = new google.maps.LatLng(latitude, longitude);
             var marker = new google.maps.Marker({

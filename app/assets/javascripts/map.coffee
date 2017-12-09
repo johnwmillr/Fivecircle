@@ -28,7 +28,7 @@ jQuery ->
 
             #Creating the map and marker
             map = new google.maps.Map(document.getElementById("map"),mapOptions)
-            map_export = map
+            window.map_export = map
             marker = new google.maps.Marker
                 map: map
 
