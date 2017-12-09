@@ -14,7 +14,7 @@ end
 # end
 
 def create
-  p "got #{params[:medium][:image].path} for path"
+  # p "got #{params[:medium][:image].path} for path"
   
   require 'aws-sdk'
   
@@ -23,11 +23,10 @@ def create
     credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
   })
   
-  # Set these environment vars instead:
+  # Set these environment vars on Heroku:
   # 
   # heroku config:set AWS_ACCESS_KEY_ID='xxx'
   # heroku config:set AWS_SECRET_ACCESS_KEY='xxx'
-  # heroku config:set AWS_REGION='us-east-1'
   
   # file_name = params[:medium][:image].original_filename
   file_name = rand(36**32).to_s(36) + '.png'
@@ -41,7 +40,9 @@ def create
   obj.upload_file(upload_file, { acl: 'public-read' })  # http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html
   
   # Returns Public URL to the file
-  p "public url #{obj.public_url}"
+  
+  # debug
+  # p "public url #{obj.public_url}"
   
   mp = medium_params
   mp[:user_id] = current_user[:id]

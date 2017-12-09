@@ -1,34 +1,48 @@
 -# in app/views/users/show.html.haml
 -# I realize using @user.id is kind of a kludge. We should use a @current_user variable
-%h1.bg-info User #{@user.username} Profile
+%h1 User #{@user.username} Profile
 %p
 .card
   .card-block
     #map
 
-%br
-%h1.bg-info User #{@user.username} Media
+.hidden
+  %table{:border => 1,:id => 'pins'}
+    %tbody
+      -# show images from all users for now
+      - @media.each do |medium|
+        %tr
+          %td= @user.id
+          %td= medium.created_at
+          %td= medium.photoUrl
+          %td= medium.latitude
+          %td= medium.longitude  
+          %td= user_medium_path(@user.id,medium.id)
 
-%table{:border => 4, :align => "center", :width => "80%", :border-collapse => "collapse", :border => "3px solid purple"}
+%h1 User #{@user.username} Media
+
+%table{:border => 1}
   #media
-    %thead.bg-success.bold
-      %th User Name
-      %th Date
-      %th URL
+    %thead
+      %th User ID
+      %th Date      
+      %th View photo
       %th Location
-      %th View Post
-    %tbody.italics
+      %th View post
+    %tbody
       - @media.each do |medium|
         - if medium.user_id == @user.id          
           %tr     
-            %td= @user.username   
+            %td= @user.id   
             %td= medium.created_at
-            %td= link_to "AWS Link", medium.photoUrl
+            %td= link_to "View photo!", medium.photoUrl            
             %td= "(#{medium.latitude}, #{medium.longitude})"          
-            %td= link_to "View post", user_medium_path(@user.id,medium.id)
+            %td= link_to "View post!", user_medium_path(@user.id,medium.id)
 
 - if @media.length == 0
   You haven't dropped any media yet.
   %div  
 
-= link_to "Add new post", new_user_medium_path(@user.id), align:"center"
+= link_to "Add new post", new_user_medium_path(@user.id)
+
+%script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqnz3DH-SPMzN2934Ptf-2bpl36vdfJcw&callback=initMap" async defer)

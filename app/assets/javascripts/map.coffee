@@ -1,3 +1,5 @@
+window.map_export = null
+
 jQuery ->
     markersArray = []
     map = null
@@ -26,6 +28,7 @@ jQuery ->
 
             #Creating the map and marker
             map = new google.maps.Map(document.getElementById("map"),mapOptions)
+            window.map_export = map
             marker = new google.maps.Marker
                 map: map
 
@@ -64,9 +67,7 @@ jQuery ->
     $(document).ready ->
         $(document).on "click", "#medium_image", ->
             fileUploadAJax()
-
-
+        
         setInterval () ->
             navigator.geolocation.getCurrentPosition(updateMap, geo_error, geo_options)
         , 1000
-
