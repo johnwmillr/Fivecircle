@@ -1,7 +1,9 @@
 -# in app/views/users/show.html.haml
 -# I realize using @user.id is kind of a kludge. We should use a @current_user variable
 
-%h1.bg-info User #{@user.username} Profile
+
+%h1.bg-info #{@user.username}'s Profile
+
 %p
 .card
   .card-block
@@ -20,30 +22,29 @@
           %td= medium.longitude  
           %td= user_medium_path(@user.id,medium.id)
 
-%h1.bg-info User #{@user.username} Media
+
+%h1.bg-info #{@user.username}' Media
+= link_to "Add new post", new_user_medium_path(@user.id)
 
 %table{:border => 4, :align => "center", :width => "80%", :border-collapse => "collapse", :border => "3px solid purple"}
   #media
+
     %thead.bg-success.bold
-      %th User ID
-      %th Date      
-      %th View photo
-      %th Location
+      %th Post #
+      %th Date     
+      %th Note 
       %th View post
     %tbody
       - @media.each do |medium|
         - if medium.user_id == @user.id          
           %tr     
-            %td= @user.id
+            %td= medium.id
             %td= medium.created_at
-            %td= link_to "View photo!", medium.photoUrl            
-            %td= "(#{medium.latitude}, #{medium.longitude})"          
-            %td= link_to "View post!", user_medium_path(@user.id,medium.id)
+            %td= medium.note
+            %td= link_to "View post!", user_medium_path(@user.id,medium.id)            
 
 - if @media.length == 0
   You haven't dropped any media yet.
   %div  
 
-= link_to "Add new post", new_user_medium_path(@user.id), align:"center"
-
-%script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqnz3DH-SPMzN2934Ptf-2bpl36vdfJcw&callback=initMap" async defer
+%script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqnz3DH-SPMzN2934Ptf-2bpl36vdfJcw&callback=initMap" async defer)
