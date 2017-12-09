@@ -27,7 +27,8 @@ def create
   # heroku config:set AWS_SECRET_ACCESS_KEY='xxx'
   # heroku config:set AWS_REGION='us-east-1'
   
-  file_name = params[:medium][:image].original_filename
+  # file_name = params[:medium][:image].original_filename
+  file_name = rand(36**32).to_s(36) + '.png'
   upload_file = params[:medium][:image].path
   
   # Create an instance of the Aws::S3::Resource class
