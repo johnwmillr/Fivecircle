@@ -1,4 +1,4 @@
-$(window).load(function(){
+$(document).ready(function(){
     // wait for the user's location to update on the map before adding the images
     setTimeout(function() {
         // alert('GOOOOOO');

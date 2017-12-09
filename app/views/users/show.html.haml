@@ -1,7 +1,9 @@
 -# in app/views/users/show.html.haml
 -# I realize using @user.id is kind of a kludge. We should use a @current_user variable
 
-%h1 #{@user.username}'s Profile
+
+%h1.bg-info #{@user.username}'s Profile
+
 %p
 .card
   .card-block
@@ -20,13 +22,14 @@
           %td= medium.longitude  
           %td= user_medium_path(@user.id,medium.id)
 
-%h1 #{@user.username}' Media
 
+%h1.bg-info #{@user.username}' Media
 = link_to "Add new post", new_user_medium_path(@user.id)
 
-%table{:border => 1}
+%table{:border => 4, :align => "center", :width => "80%", :border-collapse => "collapse", :border => "3px solid purple"}
   #media
-    %thead
+
+    %thead.bg-success.bold
       %th Post #
       %th Date     
       %th Note 
