@@ -11,7 +11,7 @@ jQuery ->
     coords =
         latitude: 41.6608501
         longitude: -91.5305475
-
+        
     window.initMap = ->
         if $('#map').size() > 0
             #Defining settings for map
@@ -44,27 +44,39 @@ jQuery ->
         marker.setPosition(new google.maps.LatLng(coords.latitude, coords.longitude))
 
     fileUploadAJax = (location) ->
-        console.log(coords)
         lat = coords.latitude
         lon = coords.longitude
-        console.log(lat)
         $.ajax 'save_location',
-            # url: $(this).attr('href')
             type: "POST"
             dataType: "text"
             data: {coordinates: {latitude: lat, longitude: lon}}
             success: (data, textStatus, jqXHR) ->
-                $('body').append "AJAX."         
 
     geo_error = () ->
         # alert "Geolocation error!"
 
     geo_options =
-        enableHighAccuracy: true
-        timeout: Infinity
-        maximumAge: 0
-
-    $(document).ready ->
+        enableHighAccuracy: true # Default = false
+        maximumAge: 0 # Default = 0
+        timeout: Infinity # Default = Infinity
+        
+    testAjax = (location) ->
+        lat = coords.latitude
+        lon = coords.longitude
+        $.ajax ':user_id/checkin',            
+            type: "POST"
+            dataType: "text"
+            data: {coordinates: {latitude: lat, longitude: lon}}
+            success: (results) ->
+                console.log (results)  
+                window.location = results
+                                   
+      
+    $(document).ready ->        
+        $(document).on "click", "#checkin", -> 
+            testAjax();
+            return false;
+          
         $(document).on "click", "#medium_image", ->
             fileUploadAJax()
         

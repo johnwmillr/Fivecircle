@@ -1,11 +1,13 @@
 -# in app/views/users/show.html.haml
--# I realize using @user.id is kind of a kludge. We should use a @current_user variable
 
-%h1 User #{@user.username} Profile
+%h1.bg-info #{@user.username}'s Profile
+
 %p
 .card
   .card-block
     #map
+#checkin
+  = button_to "Check-in", user_checkin_path(@user.id), :method => :post
 
 .hidden
   %table{:border => 1,:id => 'pins'}
@@ -20,29 +22,49 @@
           %td= medium.longitude  
           %td= user_medium_path(@user.id,medium.id)
 
-%h1 User #{@user.username} Media
 
-%table{:border => 1}
+%h1.bg-info #{@user.username}' Media
+= link_to "Add new post", new_user_medium_path(@user.id)
+
+%table{:border => 4, :align => "center", :width => "80%", :border-collapse => "collapse", :border => "3px solid purple"}
+
   #media
-    %thead
-      %th User ID
-      %th Date      
-      %th View photo
-      %th Location
+
+    %thead.bg-success.bold
+      %th User Name
+      %th Post #
+      %th Date     
+      %th Note 
       %th View post
     %tbody
       - @media.each do |medium|
-        %tr     
-          %td= @user.id   
-          %td= medium.created_at
-          %td= link_to "View photo!", medium.photoUrl            
-          %td= "(#{medium.latitude}, #{medium.longitude})"          
-          %td= link_to "View post!", user_medium_path(@user.id,medium.id)
+        - if medium.user_id == @user.id          
+          %tr     
+            %td= @user.username
+            %td= medium.id
+            %td= medium.created_at
+            %td= medium.note
+            %td= link_to "View post!", user_medium_path(@user.id,medium.id)
 
-- if @media.length == 0
-  You haven't dropped any media yet.
-  %div  
 
-= link_to "Add new post", new_user_medium_path(@user.id)
+%h1 User #{@user.id} Coupons
+%table{:border => 1}
+  #coupon
+    %thead
+      %th User ID
+      %th Coupon Name
+      %th Description
+      %th Use Coupon
+    %tbody
+      - @current_user.saved_coupons.each do |coupon|
+        - @coupons.each do |coupon_lookup|
+          - if coupon_lookup.id == coupon.coupon_id
+            - name = coupon_lookup.couponName
+            - description = coupon_lookup.description
+          %tr     
+            %td= @user.id   
+            %td= name
+            %td=   description    
+            %td= link_to "Use", root_path
 
 %script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqnz3DH-SPMzN2934Ptf-2bpl36vdfJcw&callback=initMap" async defer)
