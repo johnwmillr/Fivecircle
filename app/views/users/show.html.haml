@@ -30,6 +30,7 @@
   #media
 
     %thead.bg-success.bold
+      %th User Name
       %th Post #
       %th Date     
       %th Note 
@@ -38,6 +39,7 @@
       - @media.each do |medium|
         - if medium.user_id == @user.id          
           %tr     
+            %td= @user.username
             %td= medium.id
             %td= medium.created_at
             %td= medium.note
