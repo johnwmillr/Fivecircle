@@ -1,4 +1,4 @@
-%h1 Sign-up 
+%h1.bg-info Sign Up
 
 -unless @merchant ==nil
   -if @merchant.errors.any?
@@ -6,7 +6,7 @@
     -@merchant.errors.full_messages.each do |msg|
       %li #{msg}
 
-= form_tag merchant_registration_path, :id=>'signup_form' do
+= form_tag merchant_registration_path, :id=>'signup_form', class:"center" do
 
   = label :merchant, :username, 'Five Circle Merchant ID'
   = text_field :merchant, 'username'
@@ -28,7 +28,10 @@
 
   = label :merchant, :password_confirmation, 'Confirm Password'
   = password_field :merchant, 'password_confirmation'
+  %br
 
-  = submit_tag 'Create my merchant account'
+  %br
+  = submit_tag 'Create my merchant account' , class:"btn btn-primary"
   <br>
+  %br
   = render "merchants/shared/links"
