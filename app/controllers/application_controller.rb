@@ -20,16 +20,16 @@ class ApplicationController < ActionController::Base
       @coupons = Coupon.where(merchant_id: current_merchant[:id])
     end
   end
-    
+
   protected
 
   def devise_parameter_sanitizer
     if resource_class == User
       User::ParameterSanitizer.new(User, :user, params)
-      
+
     elsif resource_class == Merchant
       Merchant::ParameterSanitizer.new(Merchant, :merchant, params)
-      
+
     else
       super # Use the default one
     end
@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   def google_api_key
     @GOOGLE_STATIC_KEY = ENV['GOOGLE_MAPS_KEY']
   end
-  
+
   # before_filter :set_google_maps_javascript_api_key
 
   # def set_google_maps_javascript_api_key
