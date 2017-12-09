@@ -44,42 +44,26 @@ jQuery ->
         marker.setPosition(new google.maps.LatLng(coords.latitude, coords.longitude))
 
     fileUploadAJax = (location) ->
-        console.log(coords)
         lat = coords.latitude
         lon = coords.longitude
-        console.log(lat)
         $.ajax 'save_location',
-            # url: $(this).attr('href')
             type: "POST"
             dataType: "text"
             data: {coordinates: {latitude: lat, longitude: lon}}
             success: (data, textStatus, jqXHR) ->
-                $('body').append "AJAX."         
 
     geo_error = () ->
         # alert "Geolocation error!"
 
-    geo_options =
-        enableHighAccuracy: true
-        timeout: Infinity
-        maximumAge: 0
-
-        # Moves the marker to user's current location        
-        marker.setPosition(new google.maps.LatLng(coords.latitude, coords.longitude))
-          
     geo_options =
         enableHighAccuracy: true # Default = false
         maximumAge: 0 # Default = 0
         timeout: Infinity # Default = Infinity
         
     testAjax = (location) ->
-        console.log("ajax here AHMED!!!!!!")
-        console.log(coords)
         lat = coords.latitude
         lon = coords.longitude
-        console.log(lat)
-        $.ajax ':user_id/checkin',
-            # url: $(this).attr('href')
+        $.ajax ':user_id/checkin',            
             type: "POST"
             dataType: "text"
             data: {coordinates: {latitude: lat, longitude: lon}}
@@ -90,15 +74,9 @@ jQuery ->
       
     $(document).ready ->        
         $(document).on "click", "#checkin", -> 
-            # navigator.geolocation.clearWatch(id)
-            # navigator.geolocation.getCurrentPosition(testAjax())
-            # getLocation
             testAjax();
             return false;
           
-        # We should have something like this that stops the tracking when user logs out:
-        # navigator.geolocation.clearWatch(watchID);                       
-
         $(document).on "click", "#medium_image", ->
             fileUploadAJax()
         
