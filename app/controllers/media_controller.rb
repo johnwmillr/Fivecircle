@@ -14,6 +14,7 @@ end
 # end
 
 def create
+
   if params[:medium][:image] != nil
     p "got #{params[:medium][:image].path} for path"
     
@@ -56,6 +57,7 @@ def create
     
     
   
+
   
   mp[:user_id] = current_user[:id]
  

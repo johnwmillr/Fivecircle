@@ -1,11 +1,12 @@
 <!-- in /views/media/new.html.haml -->
 
-<h1>New Media</h1>
+<h1 style="background-color:yellow;">New Media</h1>
 
 <%= form_for(:medium, multipart: true) do |f| %>
+ <div align="center">
   <div class="field">
     <%= f.label :image %>
-    <%= f.file_field :image %>
+    <%= f.file_field :image%>
   </div>
   
   <div class="field">
@@ -15,5 +16,8 @@
   
   <div class="actions">
     <%= f.submit 'Upload image' %>
+
   </div>
+  </br>
+ </div>  
 <% end %>

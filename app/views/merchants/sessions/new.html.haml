@@ -1,4 +1,4 @@
-%h1 Log in 
+%h1.bg-info Log In 
 
 -unless @merchant ==nil
   -if @merchant.errors.any?
@@ -6,7 +6,7 @@
     -@merchant.errors.full_messages.each do |msg|
       %li #{msg}
 
-= form_tag merchant_session_path, :id=>'login_form' do
+= form_tag merchant_session_path, :id=>'login_form' , class:"center" do
 
   = label :merchant, :username, 'Five Circle Merchant ID'
   = text_field :merchant, 'username'
@@ -19,11 +19,15 @@
   
   -if devise_mapping.rememberable?
     <br>
+    %br
     remember me
     =check_box_tag "remember_me", 1, :id => "remember_tag"
   <br>
-  = submit_tag 'Log in'
+  %br
+  = submit_tag 'Log In' , class:"btn btn-primary"
+  %br
   <br>
+  %br
   = render "merchants/shared/links"
 
 
