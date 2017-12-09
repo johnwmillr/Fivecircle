@@ -44,14 +44,15 @@ window.onload = function() {
          //iterate through columns
          //columns would be accessed using the "col" variable assigned in the for loop
          
-         if (j == 2) {
-             url = col.innerHTML;
-         }
-         else if (j == 3) {
+         
+         if (j == 3) {
              latitude = parseFloat(col.innerHTML);
          }
          else if (j == 4) {
              longitude = parseFloat(col.innerHTML);
+         }
+         else if (j == 5) {
+             url = col.innerHTML;
          }
        }
        
