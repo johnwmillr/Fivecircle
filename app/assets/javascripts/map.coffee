@@ -11,7 +11,7 @@ jQuery ->
     coords =
         latitude: 41.6608501
         longitude: -91.5305475
-
+        
     window.initMap = ->
         if $('#map').size() > 0
             #Defining settings for map
@@ -64,7 +64,41 @@ jQuery ->
         timeout: Infinity
         maximumAge: 0
 
-    $(document).ready ->
+        # Moves the marker to user's current location        
+        marker.setPosition(new google.maps.LatLng(coords.latitude, coords.longitude))
+          
+    geo_options =
+        enableHighAccuracy: true # Default = false
+        maximumAge: 0 # Default = 0
+        timeout: Infinity # Default = Infinity
+        
+    testAjax = (location) ->
+        console.log("ajax here AHMED!!!!!!")
+        console.log(coords)
+        lat = coords.latitude
+        lon = coords.longitude
+        console.log(lat)
+        $.ajax ':user_id/checkin',
+            # url: $(this).attr('href')
+            type: "POST"
+            dataType: "text"
+            data: {coordinates: {latitude: lat, longitude: lon}}
+            success: (results) ->
+                console.log (results)  
+                window.location = results
+                                   
+      
+    $(document).ready ->        
+        $(document).on "click", "#checkin", -> 
+            # navigator.geolocation.clearWatch(id)
+            # navigator.geolocation.getCurrentPosition(testAjax())
+            # getLocation
+            testAjax();
+            return false;
+          
+        # We should have something like this that stops the tracking when user logs out:
+        # navigator.geolocation.clearWatch(watchID);                       
+
         $(document).on "click", "#medium_image", ->
             fileUploadAJax()
         
