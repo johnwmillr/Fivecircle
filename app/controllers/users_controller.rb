@@ -108,7 +108,7 @@ class UsersController < ApplicationController
 
     puts current_user.lastAddress
     # user_address = "115 Iowa Ave, Iowa City, IA 52240"
-    match_merchant = Merchant.where("address == '#{current_user.lastAddress}'")
+    match_merchant = Merchant.where("address = '#{current_user.lastAddress}'")
     # match_merchant = Merchant.where("address == '#{user_address}'")
 
     puts match_merchant.inspect
