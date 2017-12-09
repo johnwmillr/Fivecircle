@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   put 'users/:user_id/media/:id' => 'media#update'
   delete 'users/:user_id/media/:id' => 'media#destroy'
 
+  post 'users/checkin' => 'users#checkin'
+
   # get 'merchants/:id' => 'merchants/actions#show', :as => :merchant
   get 'merchants/:merchant_id/coupons' => 'coupons#index', :as => :merchant_coupons
   post 'merchants/:merchant_id/coupons' => 'coupons#create'
@@ -40,6 +42,9 @@ Rails.application.routes.draw do
 
   post 'users/:user_id/media/save_location' => 'users#save_location'
   
+  post 'users/:user_id/checkin' => 'users#checkin', :as =>:user_checkin
+  get 'users/:user_id/avail_coupons' => 'users#getCoupons', :as => :get_coupons
+  post 'users/:user_id/sel_coupons' => 'users#selCoupons', :as => :sel_coupons
   # root :to => redirect('/users')
 
   # You can have the root of your site routed with "root"
@@ -53,6 +58,8 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+
+  resources :users
 
   # Example resource route with options:
   #   resources :products do

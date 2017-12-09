@@ -14,6 +14,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Google Maps API
+gem 'google_maps_service'
+
 # Use Haml as the templating library
 gem 'haml'
 

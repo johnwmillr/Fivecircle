@@ -30,6 +30,9 @@ config/initializers/geocoder.rb
 # API Keys
 secrets.txt
 
+# API credentials
+secrets.txt
+
 # Word docs
 *.doc
 *.docx
