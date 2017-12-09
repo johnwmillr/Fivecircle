@@ -9,15 +9,15 @@
 %br
 %h1.bg-info User #{@user.username} Media
 
-%table{:border => 1, :align => "center"}
+%table{:border => 4, :align => "center"}
   #media
-    %thead
+    %thead.bg-success.bold
       %th User Name
       %th Date
       %th URL
       %th Location
       %th View Post
-    %tbody
+    %tbody.italics
       - @media.each do |medium|
         - if medium.user_id == @user.id          
           %tr     
