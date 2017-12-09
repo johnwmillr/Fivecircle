@@ -3,13 +3,15 @@
 <h1 style="background-color:yellow;">New Media</h1>
 
 <%= form_for(:medium, multipart: true) do |f| %>
-  <div class="field" color align="center">
+ <div align="center">
+  <div class="field">
     <%= f.label :image %>
-    <%= f.file_field :image %>
+    <%= f.file_field :image%>
   </div>
   <br>
-  <div class="actions"  align="center">
-    <%= f.submit 'Upload image' %>
+  <div class="actions" >
+    <%= f.submit 'Upload image'%>
   </div>
   </br>
+ </div>  
 <% end %>
