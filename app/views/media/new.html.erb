@@ -8,9 +8,15 @@
     <%= f.label :image %>
     <%= f.file_field :image%>
   </div>
-  <br>
-  <div class="actions" >
-    <%= f.submit 'Upload image'%>
+  
+  <div class="field">
+    <%= f.label :caption %>
+
+    <p><%= f.text_area :note, cols: "30", rows: "10" %></p>
+  
+  <div class="actions">
+    <%= f.submit 'Upload image' %>
+
   </div>
   </br>
  </div>  
