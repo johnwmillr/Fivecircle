@@ -32,6 +32,7 @@ class UsersController < ApplicationController
       end
     end
     
+
     def reverse_geocode(latlong)
       # Load the API key
       if on_heroku? or 1
@@ -43,6 +44,7 @@ class UsersController < ApplicationController
           api_key = file_lines[0]
         end
       end
+    end  
       
       # Initialize the Geocoding API
       gmaps = GoogleMapsService::Client.new(key: api_key)
