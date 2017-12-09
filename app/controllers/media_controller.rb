@@ -1,6 +1,8 @@
 class MediaController < ApplicationController
 
-
+def medium_params
+    params.require(:medium).permit(:name)
+end
 
 
 def new
@@ -41,11 +43,13 @@ def create
   # Returns Public URL to the file
   p "public url #{obj.public_url}"
   
+  mp = medium_params
+  mp[:user_id] = current_user[:id]
+  mp[:photoUrl] = obj.public_url
+  mp[:latitude] = current_user[:latitude]
+  mp[:longitude] = current_user[:longitude]  
   
-  medium_params[:user_id] = current_user[:id]
-  medium_params[:photoUrl] = obj.public_url
-  
-  @medium = Medium.new(medium_params)
+  @medium = Medium.new(mp)
   
   if @medium.save
       redirect_to user_path(current_user[:id]), notice: 'Medium was successfully created.'
@@ -64,9 +68,5 @@ def show
 end
 
 private
-
-def medium_params
-    params.require(:medium).permit(:name)
-end
 
 end
