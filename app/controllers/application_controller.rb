@@ -9,7 +9,8 @@ class ApplicationController < ActionController::Base
   # I need @media to be accessible by users_controller.rb
   def set_media
     if current_user
-      @media = Medium.where(user_id: current_user[:id])
+      # @media = Medium.where(user_id: current_user[:id])
+      @media = Medium.all
     end
   end
 

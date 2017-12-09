@@ -32,13 +32,12 @@
       %th View post
     %tbody
       - @media.each do |medium|
-        - if medium.user_id == @user.id          
-          %tr     
-            %td= @user.id   
-            %td= medium.created_at
-            %td= link_to "View photo!", medium.photoUrl            
-            %td= "(#{medium.latitude}, #{medium.longitude})"          
-            %td= link_to "View post!", user_medium_path(@user.id,medium.id)
+        %tr     
+          %td= @user.id   
+          %td= medium.created_at
+          %td= link_to "View photo!", medium.photoUrl            
+          %td= "(#{medium.latitude}, #{medium.longitude})"          
+          %td= link_to "View post!", user_medium_path(@user.id,medium.id)
 
 - if @media.length == 0
   You haven't dropped any media yet.

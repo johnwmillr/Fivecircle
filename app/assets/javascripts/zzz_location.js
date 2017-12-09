@@ -2,7 +2,7 @@ $(document).ready(function(){
     // wait for the user's location to update on the map before adding the images
     setTimeout(function() {
         // alert('GOOOOOO');
-    
+        
         var table = document.getElementById("pins");
         
         for (var i = 0, row; row = table.rows[i]; i++) {
