@@ -56,8 +56,10 @@ jQuery ->
             type: "POST"
             dataType: "text"
             data: {coordinates: {latitude: lat, longitude: lon}}
-            success: (data, textStatus, jqXHR) ->
-                $('body').append "Successful AJAX call."                     
+            success: (results) ->
+                console.log (results)  
+                window.location = results
+                                   
       
     $(document).ready ->
         
