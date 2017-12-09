@@ -12,7 +12,7 @@ jQuery ->
         latitude: 41.6608501
         longitude: -91.5305475
 
-    window.onload = ->
+    window.initMap = ->
         if $('#map').size() > 0
             #Defining settings for map
             mapOptions =
@@ -28,7 +28,7 @@ jQuery ->
 
             #Creating the map and marker
             map = new google.maps.Map(document.getElementById("map"),mapOptions)
-            window.map_export = map
+            map_export = map
             marker = new google.maps.Marker
                 map: map
 
