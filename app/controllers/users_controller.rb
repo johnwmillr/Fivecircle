@@ -81,7 +81,7 @@ class UsersController < ApplicationController
     # user_address = "115 Iowa Ave, Iowa City, IA 52240"
     user_address = reverse_geocode([lat,lon])
     #puts "addr " + user_address.inspect
-    match_merchant = Merchant.where("address == '#{user_address}'")
+    match_merchant = Merchant.where("address = '#{user_address}'")
     #puts match_merchant.inspect
     #puts (match_merchant.any?).inspect
     puts '####################################################'
