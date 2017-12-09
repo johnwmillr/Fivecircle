@@ -1,18 +1,18 @@
 -# in app/views/users/show.html.haml
 -# I realize using @user.id is kind of a kludge. We should use a @current_user variable
-
-%h1 User #{@user.id} Profile
+%h1.bg-info User #{@user.username} Profile
 %p
 .card
   .card-block
     #map
 
-%h1 User #{@user.id} Media
+%br
+%h1.bg-info User #{@user.username} Media
 
-%table{:border => 1}
+%table{:border => 1, :align => "center"}
   #media
     %thead
-      %th User ID
+      %th User Name
       %th Date
       %th URL
       %th Location
@@ -21,7 +21,7 @@
       - @media.each do |medium|
         - if medium.user_id == @user.id          
           %tr     
-            %td= @user.id   
+            %td= @user.username   
             %td= medium.created_at
             %td= link_to "AWS Link", medium.photoUrl
             %td= "(#{medium.latitude}, #{medium.longitude})"          
@@ -31,4 +31,4 @@
   You haven't dropped any media yet.
   %div  
 
-= link_to "Add new post", new_user_medium_path(@user.id)
+= link_to "Add new post", new_user_medium_path(@user.id), align:"center"
