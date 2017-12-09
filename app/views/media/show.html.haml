@@ -1,9 +1,19 @@
--# in app/views/media/show.html.haml
+%header
+  %h1= "User #{@medium.user_id}, post \##{@medium.id}"
+  %h2= "#{@medium.note}"
 
-%h2.bg-info Media dropped on #{@medium.created_at} at (#{@medium.latitude}, #{@medium.longitude})
-
--# Still need to add a static map to this view
-
-%ul#details
-  %li
-    = "Note: #{@medium.note}"
+  %p
+    =image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@medium.latitude},#{@medium.longitude}&markers=#{@medium.latitude},#{@medium.longitude}&zoom=18&size=640x400&key=AIzaSyAqnz3DH-SPMzN2934Ptf-2bpl36vdfJcw",
+      :class => 'img-fluid img-rounded', :alt => "#{@medium.user_id} on the map"
+  %p
+    %strong Date:
+    #{@medium.created_at}
+  %p
+    %strong AWS Link:
+    =link_to "View photo", "#{@medium.photoUrl}"
+  %p
+    %strong Address:
+    #{@medium.address}
+  %p
+    %strong Coordinates:
+    (#{@medium.latitude}, #{@medium.longitude})
