@@ -12,7 +12,7 @@ jQuery ->
         latitude: 41.6608501
         longitude: -91.5305475
 
-    window.initMap = ->
+    window.onload = ->
         if $('#map').size() > 0
             #Defining settings for map
             mapOptions =
