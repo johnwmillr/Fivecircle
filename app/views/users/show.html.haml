@@ -25,7 +25,9 @@
             %td= medium.created_at
             %td= "(#{medium.latitude}, #{medium.longitude})"          
             %td= link_to "View post", user_medium_path(@user.id,medium.id)
-            
+
+= link_to "Add new post", new_user_medium_path(@user.id)
+
 %h1 User #{@user.id} Coupons
 %table{:border => 1}
   #coupon
@@ -45,5 +47,3 @@
             %td= name
             %td=   description    
             %td= link_to "Use", root_path
-  
-= link_to "Add new post", new_user_medium_path(@user.id)

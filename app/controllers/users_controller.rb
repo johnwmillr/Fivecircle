@@ -130,7 +130,7 @@ class UsersController < ApplicationController
   
   def saveCoupForUser(coupon_to_save)
     puts "saved!!!!!!!!!!!!!!!"
-    @current_user.saved_coupons.build(:id => 1,:validation => true, :created_at => Coupon.find(coupon_to_save)[:created_at],:updated_at => Coupon.find(coupon_to_save)[:updated_at], :coupon_id => coupon_to_save)
+    @current_user.saved_coupons.build(:id =>coupon_to_save,:validation => true, :created_at => Coupon.find(coupon_to_save)[:created_at],:updated_at => Coupon.find(coupon_to_save)[:updated_at], :coupon_id => coupon_to_save)
     puts @current_user.saved_coupons.inspect
   end
 
