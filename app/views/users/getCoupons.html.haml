@@ -1,0 +1,19 @@
+%h1= "The following coupons were found at '#{@current_user.lastAddress}':"
+
+= form_tag sel_coupons_path, :method => :post do
+  %table
+    %thead
+      %tr
+        %th Coupon Name
+        %th Description
+        %th Select
+    %tbody
+      - @coupons_avail.each do |coupon|
+        %tr
+          %td= coupon.couponName
+          %td= Coupon.find(coupon.id)[:description]
+          %td= check_box_tag "coupon_sel[#{coupon[:id]}]", :id => "checkbox_#{coupon[:id]}" 
+
+  = submit_tag 'Add Selected Coupons'
+  
+= link_to 'Go back', user_path(current_user[:id])

@@ -1,18 +1,15 @@
 -# in app/views/merchants/show.html.haml
+%h1.bg-info Merchant Profile
+%center
+  =image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@merchant.latitude},#{@merchant.longitude}&zoom=18&size=640x400&key=#{@GOOGLE_STATIC_KEY}",
+    :class => 'img-fluid img-rounded', :alt => "#{@merchant.id} on the map"
 
-%h1 Merchant Profile
--# TODO: Actually, don't we just want a static map for Merchants?
-%p
-.card
-  .card-block
-    #map
+%h1.bg-info Merchant Coupons
 
-%h1 Merchant Coupons
-
-%table{:border => 1}
+%table{:border => 4, :align => "center", :width => "80%", :border-collapse => "collapse", :border => "3px solid purple"}
   #coupons
-    %thead
-      %th Merchant ID
+    %thead.bg-success.bold
+      %th Merchant Name
       %th Name
       %th Date
       %th Location
@@ -21,7 +18,7 @@
       - @coupons.each do |coupon|
         - if coupon.merchant_id == @merchant.id
           %tr     
-            %td= @merchant.id   
+            %td= @merchant.merchantName  
             %td= coupon.couponName
             %td= coupon.created_at
             %td= @merchant.address

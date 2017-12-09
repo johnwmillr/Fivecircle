@@ -2,14 +2,15 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :set_media, :set_coupons
+  before_filter :set_media, :set_coupons, :google_api_key
 
   # TODO: Figure out the proper way to make @media and @coupons accessible
   # This is almost certainly a kludge...
   # I need @media to be accessible by users_controller.rb
   def set_media
     if current_user
-      @media = Medium.where(user_id: current_user[:id])
+      # @media = Medium.where(user_id: current_user[:id])
+      @media = Medium.all
     end
   end
 
@@ -33,8 +34,11 @@ class ApplicationController < ActionController::Base
       super # Use the default one
     end
   end
-  
 
+  def google_api_key
+    @GOOGLE_STATIC_KEY = ENV['GOOGLE_MAPS_KEY']
+  end
+  
   # before_filter :set_google_maps_javascript_api_key
 
   # def set_google_maps_javascript_api_key
