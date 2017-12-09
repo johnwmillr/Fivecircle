@@ -3,17 +3,16 @@
   %h2= "#{@medium.note}"
 
   %p
-    =image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@medium.latitude},#{@medium.longitude}&markers=#{@medium.latitude},#{@medium.longitude}&zoom=18&size=640x400&key=AIzaSyAqnz3DH-SPMzN2934Ptf-2bpl36vdfJcw",
-      :class => 'img-fluid img-rounded', :alt => "#{@medium.user_id} on the map"
-  %p
     %strong Date:
     #{@medium.created_at}
   %p
-    %strong AWS Link:
-    =link_to "View photo", "#{@medium.photoUrl}"
+    =image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@medium.latitude},#{@medium.longitude}&markers=#{@medium.latitude},#{@medium.longitude}&zoom=18&size=384x240&key=AIzaSyAqnz3DH-SPMzN2934Ptf-2bpl36vdfJcw",
+      :class => 'img-fluid img-rounded', :alt => "#{@medium.user_id} on the map"
+  %p
+  =image_tag "#{@medium.photoUrl}", :width => "320"
+  %p
+    %strong Coordinates:
+    #{@medium.latitude}, #{@medium.longitude}
   %p
     %strong Address:
     #{@medium.address}
-  %p
-    %strong Coordinates:
-    (#{@medium.latitude}, #{@medium.longitude})
